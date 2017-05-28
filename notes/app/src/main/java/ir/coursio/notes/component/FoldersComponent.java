@@ -2,7 +2,7 @@ package ir.coursio.notes.component;
 
 import java.util.ArrayList;
 
-import ir.coursio.notes.model.FolderModel;
+import ir.coursio.notes.model.FolderStruct;
 
 /**
  * Created by Taher on 28/05/2017.
@@ -28,7 +28,7 @@ public interface FoldersComponent {
          *
          * @param folders inject folders into adapter's RecyclerView
          */
-        void updateFolders(ArrayList<FolderModel> folders);
+        void updateFolders(ArrayList<FolderStruct> folders);
 
     }
 }

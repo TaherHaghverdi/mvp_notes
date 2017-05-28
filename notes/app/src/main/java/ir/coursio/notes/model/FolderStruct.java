@@ -9,11 +9,11 @@ import ir.coursio.notes.model.db.DataContract;
  * Project: notes
  */
 
-public class FolderModel {
+public class FolderStruct {
     private String id;
     private String name;
 
-    public FolderModel(Cursor cursor) {
+    public FolderStruct(Cursor cursor) {
         this.id = cursor.getString(cursor.getColumnIndex(DataContract.FoldersEntry._ID));
         this.name = cursor.getString(cursor.getColumnIndex(DataContract.FoldersEntry.COLUMN_FOLDER_NAME));
     }

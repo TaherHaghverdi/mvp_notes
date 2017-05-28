@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ir.coursio.notes.R;
-import ir.coursio.notes.model.FolderModel;
+import ir.coursio.notes.model.FolderStruct;
 
 /**
  * Created by Taher on 28/05/2017.
@@ -20,10 +20,10 @@ import ir.coursio.notes.model.FolderModel;
 public class FolderAdapter extends RecyclerView.Adapter {
     //Custom listener to handle each item click
     private Listener listener;
-    private ArrayList<FolderModel> folders;
+    private ArrayList<FolderStruct> folders;
     private Context context;
 
-    public FolderAdapter(Listener listener, ArrayList<FolderModel> folders, Context context) {
+    public FolderAdapter(Listener listener, ArrayList<FolderStruct> folders, Context context) {
         this.listener = listener;
         this.folders = folders;
         this.context = context;
@@ -52,7 +52,7 @@ public class FolderAdapter extends RecyclerView.Adapter {
             txtFolderName = (TextView) view.findViewById(R.id.txtFolderName);
         }
 
-        public void bindView(final FolderModel mFolder) {
+        public void bindView(final FolderStruct mFolder) {
             txtFolderName.setText(mFolder.getName());
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,8 +82,9 @@ public class FolderAdapter extends RecyclerView.Adapter {
      *
      * @param folders updated folders list
      */
-    public void swapData(ArrayList<FolderModel> folders) {
+    public void swapData(ArrayList<FolderStruct> folders) {
         this.folders.clear();
+        this.folders.addAll(folders);
         notifyDataSetChanged();
     }
 }

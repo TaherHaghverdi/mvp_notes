@@ -1,6 +1,5 @@
 package ir.coursio.notes.view.fragment;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 
 import ir.coursio.notes.R;
 import ir.coursio.notes.component.FoldersComponent;
-import ir.coursio.notes.model.FolderModel;
+import ir.coursio.notes.model.FolderStruct;
 import ir.coursio.notes.view.adapter.FolderAdapter;
 
 /**
@@ -38,7 +37,7 @@ public class FoldersFragment extends Fragment implements FoldersComponent.View, 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new FolderAdapter(this, new ArrayList<FolderModel>(), getContext());
+        adapter = new FolderAdapter(this, new ArrayList<FolderStruct>(), getContext());
     }
 
     @Nullable
@@ -65,7 +64,7 @@ public class FoldersFragment extends Fragment implements FoldersComponent.View, 
      * @param folders update folders by swapping adapter's data
      */
     @Override
-    public void updateFolders(ArrayList<FolderModel> folders) {
+    public void updateFolders(ArrayList<FolderStruct> folders) {
             adapter.swapData(folders);
     }
 

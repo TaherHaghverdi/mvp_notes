@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import ir.coursio.notes.App;
 import ir.coursio.notes.component.FoldersComponent;
-import ir.coursio.notes.model.FolderModel;
+import ir.coursio.notes.model.FolderStruct;
 import ir.coursio.notes.model.db.DataContract;
 
 /**
@@ -54,10 +54,10 @@ public class FoldersPresenter implements FoldersComponent.Presenter, LoaderManag
         Cursor cursor = (Cursor) data;
         if (data != null) {
             cursor.moveToFirst();
-            ArrayList<FolderModel> folders = new ArrayList<>();
+            ArrayList<FolderStruct> folders = new ArrayList<>();
             try {
                 while (cursor.moveToNext()) {
-                    folders.add(new FolderModel(cursor));
+                    folders.add(new FolderStruct(cursor));
                 }
             } finally {
                 view.updateFolders(folders);
