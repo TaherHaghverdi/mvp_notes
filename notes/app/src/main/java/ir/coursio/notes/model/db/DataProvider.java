@@ -51,7 +51,7 @@ public class DataProvider extends ContentProvider {
                 database = dbHelper.getReadableDatabase();
                 cursor = database.query(DataContract.FoldersEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
-            // If the incoming URI was for all notes of a specific category
+            // If the incoming URI was for all notes of a specific folder
             case NOTES:
                 dbHelper = new DbHelper(getContext());
                 database = dbHelper.getReadableDatabase();
@@ -59,7 +59,6 @@ public class DataProvider extends ContentProvider {
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 cursor = database.query(DataContract.NoteEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
-
             default:
                 throw new IllegalStateException("IllegalStateException for URI: " + uri);
         }
@@ -90,7 +89,7 @@ public class DataProvider extends ContentProvider {
         DbHelper dbHelper;
         switch (match) {
             case FOLDERS:
-                //insert a new category
+                //add new folder
                 dbHelper = new DbHelper(getContext());
                 database = dbHelper.getWritableDatabase();
 
@@ -100,7 +99,7 @@ public class DataProvider extends ContentProvider {
                 database.close();
                 return ContentUris.withAppendedId(uri, insertId);
             case NOTES:
-                //insert a new note with specific cat id
+                //insert a new note in a specific folder
                 dbHelper = new DbHelper(getContext());
                 database = dbHelper.getWritableDatabase();
                 long insertID = database.insertWithOnConflict(DataContract.NoteEntry.TABLE_NAME
