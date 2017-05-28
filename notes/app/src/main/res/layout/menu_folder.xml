@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/menu_folder_padding">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_folder_36dp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/menu_folder_text_margin"
+        android:layout_marginRight="@dimen/menu_folder_text_margin"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minLines="1"
+        android:textSize="@dimen/menu_folder_text_size" />
+</LinearLayout>

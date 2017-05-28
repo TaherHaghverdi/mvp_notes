@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="main_toolbar_elevation">4dp</dimen>
+
+
+    <!-- Folders -->
+    <dimen name="menu_folder_padding">8dp</dimen>
+    <dimen name="menu_folder_text_margin">8dp</dimen>
+    <dimen name="menu_folder_text_size">16sp</dimen>
+
 </resources>
