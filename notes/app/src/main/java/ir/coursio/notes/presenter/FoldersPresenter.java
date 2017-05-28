@@ -29,6 +29,7 @@ public class FoldersPresenter implements FoldersComponent.Presenter, LoaderManag
     public FoldersPresenter(FoldersComponent.View view, LoaderManager loaderManager) {
         this.view = view;
         this.loaderManager = loaderManager;
+        view.setPresenter(this);
     }
 
     @Override
