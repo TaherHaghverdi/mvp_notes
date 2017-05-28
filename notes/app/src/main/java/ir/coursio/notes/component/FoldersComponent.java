@@ -19,7 +19,7 @@ public interface FoldersComponent {
         /**
          * provides presenter for view
          *
-         * @param presenter inject presenter into the view
+         * @param presenter inject presenter into view
          */
         void setPresenter(FoldersComponent.Presenter presenter);
 
