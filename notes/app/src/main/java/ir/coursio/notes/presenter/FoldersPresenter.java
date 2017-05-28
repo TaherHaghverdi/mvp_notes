@@ -3,12 +3,15 @@ package ir.coursio.notes.presenter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 
 import java.util.ArrayList;
 
+import ir.coursio.notes.App;
 import ir.coursio.notes.component.FoldersComponent;
 import ir.coursio.notes.model.FolderModel;
+import ir.coursio.notes.model.db.DataContract;
 
 /**
  * Created by Taher on 28/05/2017.
@@ -33,10 +36,16 @@ public class FoldersPresenter implements FoldersComponent.Presenter, LoaderManag
         loaderManager.initLoader(LOADER_IDENTIFIER, null, this);
     }
 
-
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
-        return null;
+        // create new cursor loader from db to load folders
+        String[] projection = {"*"};
+        return new CursorLoader(App.getAppContext(),
+                DataContract.FoldersEntry.CONTENT_URI,
+                projection,
+                null,
+                null,
+                null);
     }
 
     @Override
