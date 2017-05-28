@@ -12,7 +12,7 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/layoutFolderName"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dialog_new_folder_edt_margin">
 

@@ -17,6 +17,7 @@ import ir.coursio.notes.model.MainModel;
 import ir.coursio.notes.presenter.FoldersPresenter;
 import ir.coursio.notes.presenter.MainPresenter;
 import ir.coursio.notes.view.adapter.FolderAdapter;
+import ir.coursio.notes.view.dialog.AddNewFolderDialog;
 import ir.coursio.notes.view.fragment.FoldersFragment;
 
 /**
@@ -29,6 +30,7 @@ public class MainView extends FrameLayout implements View.OnClickListener {
 
     ViewGroup mainLayout;
     MainPresenter presenter;
+    FragmentManager fragmentManager;
 
     public MainView(@NonNull Activity activity) {
         super(activity);
@@ -38,7 +40,7 @@ public class MainView extends FrameLayout implements View.OnClickListener {
         FloatingActionButton fabAddFolder = (FloatingActionButton) view.findViewById(R.id.fabAddFolder);
         fabAddFolder.setOnClickListener(this);
 
-        FragmentManager fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
+        fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
         LoaderManager loaderManager = ((FragmentActivity) activity).getSupportLoaderManager();
         FoldersFragment foldersFragment = (FoldersFragment) fragmentManager.findFragmentByTag("FoldersFragment");
         if (foldersFragment == null) {
@@ -47,7 +49,6 @@ public class MainView extends FrameLayout implements View.OnClickListener {
                     .add(R.id.mainLayout, foldersFragment, "CategoryFragment").commitAllowingStateLoss();
         }
         new FoldersPresenter(foldersFragment, loaderManager);
-
     }
 
     public void setPresenter(MainPresenter presenter) {
@@ -60,7 +61,10 @@ public class MainView extends FrameLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        presenter.addFolderToDb("test");
+        AddNewFolderDialog dialog = new AddNewFolderDialog();
+        dialog.setShowsDialog(true);
+        dialog.show(fragmentManager, "NewFolderDialogFragment");
+
     }
 
 }

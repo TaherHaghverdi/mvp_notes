@@ -1,7 +1,6 @@
 package ir.coursio.notes.view.dialog;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -20,13 +19,6 @@ import ir.coursio.notes.R;
  */
 
 public class AddNewFolderDialog extends DialogFragment {
-    private Listener listener;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        listener = (Listener) context;
-    }
 
     @Nullable
     @Override
@@ -41,7 +33,7 @@ public class AddNewFolderDialog extends DialogFragment {
             public void onClick(View view) {
 
                 if (edtFolderName.getText().toString().length() > 0) {
-                    listener.onSaveClickListener(edtFolderName.getText().toString());
+                    ((Listener) getContext()).onSaveClickListener(edtFolderName.getText().toString());
                     getDialog().dismiss();
                 }
             }
@@ -64,6 +56,7 @@ public class AddNewFolderDialog extends DialogFragment {
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         return dialog;
     }
+
 
     public interface Listener {
         /**
