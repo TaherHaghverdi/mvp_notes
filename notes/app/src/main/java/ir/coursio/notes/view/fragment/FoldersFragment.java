@@ -38,6 +38,7 @@ public class FoldersFragment extends Fragment implements FoldersComponent.View, 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        adapter = new FolderAdapter(this, new ArrayList<FolderModel>(), getContext());
     }
 
     @Nullable
@@ -65,7 +66,7 @@ public class FoldersFragment extends Fragment implements FoldersComponent.View, 
      */
     @Override
     public void updateFolders(ArrayList<FolderModel> folders) {
-        adapter.swapData(folders);
+            adapter.swapData(folders);
     }
 
     /**
