@@ -49,7 +49,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     INTEGER_TYPE +
                     PRIMARY_KEY +
                     COMMA_SEP +
-                    DataContract.FoldersEntry.COLUMN_FOLDER_TITLE +
+                    DataContract.FoldersEntry.COLUMN_FOLDER_NAME +
                     TEXT_TYPE +
                     " )";
 

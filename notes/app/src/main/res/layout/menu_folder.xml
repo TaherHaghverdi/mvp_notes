@@ -12,6 +12,7 @@
         android:src="@drawable/ic_folder_36dp" />
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtFolderName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/menu_folder_text_margin"

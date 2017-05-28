@@ -27,7 +27,7 @@ public class DataContract {
     public static abstract class FoldersEntry implements BaseColumns {
         public final static String _ID = BaseColumns._ID;
         public static final String TABLE_NAME = "folders";
-        public static final String COLUMN_FOLDER_TITLE = "category_title";
+        public static final String COLUMN_FOLDER_NAME = "category_title";
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_FOLDERS);
         public static final Uri CONTENT_URI_NOTES = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_NOTES + PATH_FOLDERS);
         public static final String CONTENT_LIST_TYPE =
