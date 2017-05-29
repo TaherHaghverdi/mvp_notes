@@ -19,7 +19,6 @@ public class NotePresenter {
     }
 
     public void onCreate() {
-        //view.setPresenter(this);
     }
 
     public void onDestroy() {

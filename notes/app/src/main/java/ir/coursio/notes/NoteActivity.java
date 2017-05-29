@@ -4,15 +4,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import ir.coursio.notes.model.NoteModel;
+import ir.coursio.notes.model.structures.NoteStruct;
 import ir.coursio.notes.presenter.NotePresenter;
 import ir.coursio.notes.view.NoteView;
+import ir.coursio.notes.view.list.NotesListFragment;
 
 /**
  * Created by Taher on 28/05/2017.
  * Project: notes
  */
 
-public class NoteActivity extends AppCompatActivity {
+public class NoteActivity extends AppCompatActivity implements NotesListFragment.Listener{
 
     public static final String FOLDER_ID = "folder_id";
 
@@ -38,5 +40,10 @@ public class NoteActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         presenter.onDestroy();
+    }
+
+    @Override
+    public void goToNote(NoteStruct note) {
+
     }
 }

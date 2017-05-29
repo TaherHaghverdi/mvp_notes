@@ -23,7 +23,6 @@ public class MainPresenter {
     }
 
     public void onCreate() {
-        view.setPresenter(this);
     }
 
     public void onDestroy() {

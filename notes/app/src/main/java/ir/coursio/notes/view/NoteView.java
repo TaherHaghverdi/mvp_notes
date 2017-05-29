@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import ir.coursio.notes.MainActivity;
 import ir.coursio.notes.NoteActivity;
 import ir.coursio.notes.R;
 import ir.coursio.notes.presenter.NotesListPresenter;
@@ -66,7 +65,7 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch ((ClickedItemType) getTag()) {
+        switch ((ClickedItemType) v.getTag()) {
             case TEXT:
                 Toast.makeText(getContext(), "TEXT", Toast.LENGTH_SHORT).show();
                 break;

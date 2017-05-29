@@ -1,5 +1,6 @@
 package ir.coursio.notes.presenter;
 
+import android.content.ContentUris;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -41,11 +42,11 @@ public class NotesListPresenter implements NotesComponent.Presenter, LoaderManag
         // create new cursor loader from db to load folders
         String[] projection = {"*"};
         return new CursorLoader(App.getAppContext(),
-                DataContract.FoldersEntry.CONTENT_URI,
-                projection,
-                null,
+                ContentUris.withAppendedId(DataContract.FoldersEntry.CONTENT_URI_NOTES, Integer.parseInt(folderId)),
+                projection,null,
                 null,
                 null);
+
     }
 
     @Override

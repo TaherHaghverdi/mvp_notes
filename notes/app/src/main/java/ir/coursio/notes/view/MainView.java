@@ -29,7 +29,6 @@ import ir.coursio.notes.view.list.FoldersListFragment;
 public class MainView extends FrameLayout implements View.OnClickListener {
 
     ViewGroup mainLayout;
-    MainPresenter presenter;
     FragmentManager fragmentManager;
 
     public MainView(@NonNull Activity activity) {
@@ -49,10 +48,6 @@ public class MainView extends FrameLayout implements View.OnClickListener {
                     .add(R.id.mainLayout, foldersListFragment, "CategoryFragment").commitAllowingStateLoss();
         }
         new FoldersListPresenter(foldersListFragment, loaderManager);
-    }
-
-    public void setPresenter(MainPresenter presenter) {
-        this.presenter = presenter;
     }
 
     public void showMessage(String message) {
