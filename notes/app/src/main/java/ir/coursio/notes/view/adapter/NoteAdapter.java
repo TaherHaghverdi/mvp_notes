@@ -96,7 +96,7 @@ public class NoteAdapter extends RecyclerView.Adapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //  listener.onNoteClicked(note);
+                    listener.onNoteSelect(note);
                 }
             });
         }
