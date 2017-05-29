@@ -1,8 +1,7 @@
 package ir.coursio.notes;
 
-import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import ir.coursio.notes.model.MainModel;
 import ir.coursio.notes.presenter.MainPresenter;
@@ -10,7 +9,7 @@ import ir.coursio.notes.view.MainView;
 import ir.coursio.notes.view.dialog.AddNewFolderDialog;
 import ir.coursio.notes.view.fragment.FoldersFragment;
 
-public class MainActivity extends BaseActivity implements FoldersFragment.Listener,AddNewFolderDialog.Listener{
+public class MainActivity extends BaseActivity implements FoldersFragment.Listener, AddNewFolderDialog.Listener {
 
     MainView view;
     MainModel model;
@@ -22,13 +21,21 @@ public class MainActivity extends BaseActivity implements FoldersFragment.Listen
         model = new MainModel(this);
         view = new MainView(this);
         setContentView(view);
-        presenter = new MainPresenter(view,model);
+        presenter = new MainPresenter(view, model);
         presenter.onCreate();
 
     }
 
+    /**
+     * this method opens NoteActivity with notes inside a specific folder
+     *
+     * @param id folder's id
+     */
     @Override
-    public void showFileData(String id) {
+    public void goToFolder(String id) {
+        Intent intent = new Intent(this, NoteActivity.class);
+        intent.putExtra(NoteActivity.FOLDER_ID, id);
+        startActivity(intent);
 
     }
 

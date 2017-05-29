@@ -73,7 +73,7 @@ public class FoldersFragment extends Fragment implements FoldersComponent.View, 
      */
     @Override
     public void onFolderSelect(String id) {
-        listener.showFileData(id);
+        listener.goToFolder(id);
     }
 
     @Override
@@ -83,6 +83,6 @@ public class FoldersFragment extends Fragment implements FoldersComponent.View, 
     }
 
     public interface Listener {
-        void showFileData(String id);
+        void goToFolder(String id);
     }
 }
