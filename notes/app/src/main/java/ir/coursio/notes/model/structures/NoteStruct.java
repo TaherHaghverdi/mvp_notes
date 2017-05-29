@@ -1,6 +1,8 @@
 package ir.coursio.notes.model.structures;
 
 import android.database.Cursor;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import ir.coursio.notes.model.db.DataContract;
 
@@ -9,7 +11,7 @@ import ir.coursio.notes.model.db.DataContract;
  * Project: notes
  */
 
-public class NoteStruct {
+public class NoteStruct implements Parcelable {
     private String id;
     private String title;
     private String text;
@@ -22,6 +24,41 @@ public class NoteStruct {
         text =data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_TEXT));
         folderId=data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_FOLDER_ID));
         drawing=data.getBlob(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_DRAW));
+    }
+
+
+    public static final Parcelable.Creator<NoteStruct> CREATOR = new Parcelable.Creator<NoteStruct>() {
+        @Override
+        public NoteStruct createFromParcel(Parcel source) {
+            return new NoteStruct(source);
+        }
+
+        @Override
+        public NoteStruct[] newArray(int size) {
+            return new NoteStruct[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.text);
+        dest.writeString(this.folderId);
+        dest.writeByteArray(this.drawing);
+    }
+
+    protected NoteStruct(Parcel in) {
+        this.id = in.readString();
+        this.title = in.readString();
+        this.text = in.readString();
+        this.folderId = in.readString();
+        this.drawing = in.createByteArray();
     }
 
     public String getId() {
