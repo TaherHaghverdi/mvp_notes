@@ -24,21 +24,9 @@ public class MainModel {
     }
 
     public void addFolder(final String name) {
-        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,};
-        new PermissionHandler().checkPermission(activity, permissions, new PermissionHandler.OnPermissionResponse() {
-            @Override
-            public void onPermissionGranted() {
-                ContentValues values = new ContentValues();
-                values.put(DataContract.FoldersEntry.COLUMN_FOLDER_NAME, name);
-                App.getAppContext().getContentResolver().insert(DataContract.FoldersEntry.CONTENT_URI, values);
-            }
-
-            @Override
-            public void onPermissionDenied() {
-
-            }
-        });
+        ContentValues values = new ContentValues();
+        values.put(DataContract.FoldersEntry.COLUMN_FOLDER_NAME, name);
+        App.getAppContext().getContentResolver().insert(DataContract.FoldersEntry.CONTENT_URI, values);
     }
 
     //  public ArrayList<FolderStruct> getFolders() {

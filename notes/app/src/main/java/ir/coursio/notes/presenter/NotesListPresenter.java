@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import ir.coursio.notes.App;
 import ir.coursio.notes.component.NotesComponent;
 import ir.coursio.notes.model.db.DataContract;
-import ir.coursio.notes.model.structures.FolderStruct;
 import ir.coursio.notes.model.structures.NoteStruct;
 
 /**

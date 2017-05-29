@@ -1,5 +1,6 @@
 package ir.coursio.notes.view;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.FrameLayout;
 import ir.coursio.notes.R;
 import ir.coursio.notes.presenter.FoldersListPresenter;
 import ir.coursio.notes.presenter.MainPresenter;
+import ir.coursio.notes.util.PermissionHandler;
 import ir.coursio.notes.view.dialog.AddNewFolderDialog;
 import ir.coursio.notes.view.list.FoldersListFragment;
 
@@ -59,9 +61,22 @@ public class MainView extends FrameLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        AddNewFolderDialog dialog = new AddNewFolderDialog();
-        dialog.setShowsDialog(true);
-        dialog.show(fragmentManager, "NewFolderDialogFragment");
+
+        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,};
+        new PermissionHandler().checkPermission((Activity) getContext(), permissions, new PermissionHandler.OnPermissionResponse() {
+            @Override
+            public void onPermissionGranted() {
+                AddNewFolderDialog dialog = new AddNewFolderDialog();
+                dialog.setShowsDialog(true);
+                dialog.show(fragmentManager, "NewFolderDialogFragment");
+            }
+
+            @Override
+            public void onPermissionDenied() {
+                // Show an alert dialog
+            }
+        });
 
     }
 
