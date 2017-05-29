@@ -28,8 +28,4 @@ public class MainModel {
         values.put(DataContract.FoldersEntry.COLUMN_FOLDER_NAME, name);
         App.getAppContext().getContentResolver().insert(DataContract.FoldersEntry.CONTENT_URI, values);
     }
-
-    //  public ArrayList<FolderStruct> getFolders() {
-    //    return realm.where(FolderStruct.class).findAll();
-    //}
 }
