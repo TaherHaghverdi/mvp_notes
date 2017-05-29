@@ -20,6 +20,7 @@
     <dimen name="menu_note_title_margin">8dp</dimen>
     <dimen name="menu_note_title_size">18sp</dimen>
     <dimen name="menu_note_text_size">16sp</dimen>
+    <dimen name="menu_note_id_img_size">24dp</dimen>
 
 
 </resources>

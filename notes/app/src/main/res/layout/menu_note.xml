@@ -6,19 +6,31 @@
     android:orientation="vertical"
     android:padding="@dimen/menu_note_padding">
 
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/txtNoteTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/menu_note_title_margin"
-        android:layout_marginLeft="@dimen/menu_note_title_margin"
-        android:layout_marginRight="@dimen/menu_note_title_margin"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:minLines="1"
-        android:textSize="@dimen/menu_note_title_size"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgIdentifier"
+            android:layout_width="@dimen/menu_note_id_img_size"
+            android:layout_height="@dimen/menu_note_id_img_size"
+            android:layout_marginLeft="@dimen/menu_note_title_margin" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txtNoteTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/menu_note_title_margin"
+            android:layout_marginLeft="@dimen/menu_note_title_margin"
+            android:layout_marginRight="@dimen/menu_note_title_margin"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:minLines="1"
+            android:textSize="@dimen/menu_note_title_size"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/txtNoteText"
