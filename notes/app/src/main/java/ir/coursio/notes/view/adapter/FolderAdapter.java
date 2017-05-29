@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ir.coursio.notes.R;
-import ir.coursio.notes.model.FolderStruct;
+import ir.coursio.notes.model.structures.FolderStruct;
 
 /**
  * Created by Taher on 28/05/2017.

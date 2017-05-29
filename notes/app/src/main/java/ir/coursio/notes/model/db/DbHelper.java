@@ -36,10 +36,10 @@ public class DbHelper extends SQLiteOpenHelper {
                     TEXT_TYPE + COMMA_SEP +
                     DataContract.NoteEntry.COLUMN_NOTE_DRAW +
                     BLOB_TYPE + COMMA_SEP +
-                    DataContract.NoteEntry.COLUMN_CAT_ID +
+                    DataContract.NoteEntry.COLUMN_FOLDER_ID +
                     INTEGER_TYPE +
                     COMMA_SEP +
-                    " FOREIGN KEY (" + DataContract.NoteEntry.COLUMN_CAT_ID
+                    " FOREIGN KEY (" + DataContract.NoteEntry.COLUMN_FOLDER_ID
                     + ") REFERENCES " + DataContract.FoldersEntry.TABLE_NAME
                     + "(" + DataContract.FoldersEntry._ID + "));";
 

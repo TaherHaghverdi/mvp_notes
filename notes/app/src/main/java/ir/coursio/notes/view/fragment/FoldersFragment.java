@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import ir.coursio.notes.R;
 import ir.coursio.notes.component.FoldersComponent;
-import ir.coursio.notes.model.FolderStruct;
+import ir.coursio.notes.model.structures.FolderStruct;
 import ir.coursio.notes.view.adapter.FolderAdapter;
 
 /**

@@ -55,7 +55,7 @@ public class DataProvider extends ContentProvider {
             case NOTES:
                 dbHelper = new DbHelper(getContext());
                 database = dbHelper.getReadableDatabase();
-                selection = DataContract.NoteEntry.COLUMN_CAT_ID + "=?";
+                selection = DataContract.NoteEntry.COLUMN_FOLDER_ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 cursor = database.query(DataContract.NoteEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;

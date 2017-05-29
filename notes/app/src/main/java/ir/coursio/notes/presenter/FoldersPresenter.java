@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import ir.coursio.notes.App;
 import ir.coursio.notes.component.FoldersComponent;
-import ir.coursio.notes.model.FolderStruct;
+import ir.coursio.notes.model.structures.FolderStruct;
 import ir.coursio.notes.model.db.DataContract;
 
 /**

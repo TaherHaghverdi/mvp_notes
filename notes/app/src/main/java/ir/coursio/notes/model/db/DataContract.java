@@ -41,6 +41,6 @@ public class DataContract {
         public static final String COLUMN_NOTE_TITLE = "note_title";
         public static final String COLUMN_NOTE_TEXT = "note_text";
         public static final String COLUMN_NOTE_DRAW = "note_draw";
-        public static final String COLUMN_CAT_ID = "cat_id";
+        public static final String COLUMN_FOLDER_ID = "cat_id";
     }
 }
