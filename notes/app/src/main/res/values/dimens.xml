@@ -14,4 +14,12 @@
     <dimen name="dialog_new_folder_title_text_margin">8dp</dimen>
     <dimen name="dialog_new_folder_edt_margin">10dp</dimen>
 
+    <!-- Notes -->
+    <dimen name="menu_note_padding">8dp</dimen>
+    <dimen name="menu_note_text_margin">8dp</dimen>
+    <dimen name="menu_note_title_margin">8dp</dimen>
+    <dimen name="menu_note_title_size">18sp</dimen>
+    <dimen name="menu_note_text_size">16sp</dimen>
+
+
 </resources>
