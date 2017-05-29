@@ -18,7 +18,7 @@ import ir.coursio.notes.model.db.DataContract;
  * Project: notes
  */
 
-public class FoldersPresenter implements FoldersComponent.Presenter, LoaderManager.LoaderCallbacks<Cursor> {
+public class FoldersListPresenter implements FoldersComponent.Presenter, LoaderManager.LoaderCallbacks<Cursor> {
     //unique identifier for loader
     private static final int LOADER_IDENTIFIER = 100;
     //manage content loaders
@@ -26,7 +26,7 @@ public class FoldersPresenter implements FoldersComponent.Presenter, LoaderManag
     //view
     private FoldersComponent.View view;
 
-    public FoldersPresenter(FoldersComponent.View view, LoaderManager loaderManager) {
+    public FoldersListPresenter(FoldersComponent.View view, LoaderManager loaderManager) {
         this.view = view;
         this.loaderManager = loaderManager;
         view.setPresenter(this);

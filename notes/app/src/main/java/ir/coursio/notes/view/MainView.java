@@ -13,12 +13,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import ir.coursio.notes.R;
-import ir.coursio.notes.model.MainModel;
-import ir.coursio.notes.presenter.FoldersPresenter;
+import ir.coursio.notes.presenter.FoldersListPresenter;
 import ir.coursio.notes.presenter.MainPresenter;
-import ir.coursio.notes.view.adapter.FolderAdapter;
 import ir.coursio.notes.view.dialog.AddNewFolderDialog;
-import ir.coursio.notes.view.fragment.FoldersFragment;
+import ir.coursio.notes.view.list.FoldersListFragment;
 
 /**
  * Created by Taher on 28/05/2017.
@@ -42,13 +40,13 @@ public class MainView extends FrameLayout implements View.OnClickListener {
 
         fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
         LoaderManager loaderManager = ((FragmentActivity) activity).getSupportLoaderManager();
-        FoldersFragment foldersFragment = (FoldersFragment) fragmentManager.findFragmentByTag("FoldersFragment");
-        if (foldersFragment == null) {
-            foldersFragment = new FoldersFragment();
+        FoldersListFragment foldersListFragment = (FoldersListFragment) fragmentManager.findFragmentByTag("FoldersListFragment");
+        if (foldersListFragment == null) {
+            foldersListFragment = new FoldersListFragment();
             fragmentManager.beginTransaction()
-                    .add(R.id.mainLayout, foldersFragment, "CategoryFragment").commitAllowingStateLoss();
+                    .add(R.id.mainLayout, foldersListFragment, "CategoryFragment").commitAllowingStateLoss();
         }
-        new FoldersPresenter(foldersFragment, loaderManager);
+        new FoldersListPresenter(foldersListFragment, loaderManager);
     }
 
     public void setPresenter(MainPresenter presenter) {

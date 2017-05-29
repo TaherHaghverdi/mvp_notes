@@ -1,4 +1,4 @@
-package ir.coursio.notes.view.fragment;
+package ir.coursio.notes.view.list;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import ir.coursio.notes.view.adapter.FolderAdapter;
  * Project: notes
  */
 
-public class FoldersFragment extends Fragment implements FoldersComponent.View, FolderAdapter.Listener {
+public class FoldersListFragment extends Fragment implements FoldersComponent.View, FolderAdapter.Listener {
 
     private FoldersComponent.Presenter presenter;
     private FolderAdapter adapter;

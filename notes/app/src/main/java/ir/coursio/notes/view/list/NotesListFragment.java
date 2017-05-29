@@ -1,4 +1,4 @@
-package ir.coursio.notes.view.fragment;
+package ir.coursio.notes.view.list;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import ir.coursio.notes.view.adapter.NoteAdapter;
  * Project: notes
  */
 
-public class NotesFragment extends Fragment implements NotesComponent.View, NoteAdapter.Listener {
+public class NotesListFragment extends Fragment implements NotesComponent.View, NoteAdapter.Listener {
 
     private NotesComponent.Presenter presenter;
     private NoteAdapter adapter;
@@ -80,7 +80,7 @@ public class NotesFragment extends Fragment implements NotesComponent.View, Note
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        listener = (NotesFragment.Listener) context;
+        listener = (NotesListFragment.Listener) context;
     }
 
     /**
