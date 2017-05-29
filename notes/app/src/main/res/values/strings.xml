@@ -4,4 +4,7 @@
     <string name="dialog_new_folder_hint">Folder\'s Name</string>
     <string name="dialog_btn_action_save">save</string>
     <string name="dialog_btn_action_cancel">cancel</string>
+
+    <string name="fab_add_text_title">Add Text</string>
+    <string name="fab_add_drawing_title">Add Drawing</string>
 </resources>

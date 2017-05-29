@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,13 +21,36 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?actionBarSize" />
 
-    <android.support.design.widget.FloatingActionButton
+    <ir.coursio.notes.view.custom.fab.FloatingActionsMenu
         android:id="@+id/fabAddNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add_24dp"
-        app:fabSize="normal"
+        android:layout_margin="@dimen/fab_labels_margin"
         app:layout_anchor="@id/mainLayout"
-        app:layout_anchorGravity="bottom|right|end" />
+        app:layout_anchorGravity="bottom|right|end"
+        fab:fab_addButtonColorNormal="@color/fab_color"
+        fab:fab_addButtonColorPressed="@color/fab_pressed_color"
+        fab:fab_addButtonPlusIconColor="@color/fab_icon_color"
+        fab:fab_addButtonSize="normal"
+        fab:fab_labelStyle="@style/menu_labels_style"
+        fab:fab_labelsPosition="left">
+
+        <ir.coursio.notes.view.custom.fab.FloatingActionButton
+            android:id="@+id/fabAddText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_note_24dp"
+            fab:fab_colorNormal="@color/fab_mini_color"
+            fab:fab_size="mini"
+            fab:fab_title="@string/fab_add_text_title" />
+
+        <ir.coursio.notes.view.custom.fab.FloatingActionButton
+            android:id="@+id/fabAddDrawing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_image_24dp"
+            fab:fab_colorNormal="@color/fab_mini_color"
+            fab:fab_size="mini"
+            fab:fab_title="@string/fab_add_drawing_title" />
+    </ir.coursio.notes.view.custom.fab.FloatingActionsMenu>
 </android.support.design.widget.CoordinatorLayout>

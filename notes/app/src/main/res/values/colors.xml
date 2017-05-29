@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#757575</color>
     <color name="colorPrimaryDark">#757575</color>
-    <color name="colorAccent">#1DE9B6</color>
+    <color name="colorAccent">#8BC34A</color>
     <color name="main_bg">#F5F5F5</color>
 
     <!-- toolbar -->
@@ -10,5 +10,12 @@
 
     <color name="black_semi_transparent">#B2000000</color>
     <color name="white">#fafafa</color>
+
+    <!-- Fab -->
+    <color name="fab_icon_color">#000</color>
+    <color name="fab_color">#8BC34A</color>
+    <color name="fab_mini_color">#8BC34A</color>
+    <color name="fab_pressed_color">#f1f1f1</color>
+
 
 </resources>
