@@ -24,7 +24,7 @@ public class NoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //model = new NoteModel(this);
+        model = new NoteModel(this);
         view = new NoteView(this);
 
         setContentView(view);
