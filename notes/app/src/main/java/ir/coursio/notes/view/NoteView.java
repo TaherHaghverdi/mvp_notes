@@ -28,7 +28,7 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
     ViewGroup mainLayout;
     FragmentManager fragmentManager;
 
-    enum ClickedItemType {TEXT, DRAWING}
+   private enum ClickedItemType {TEXT, DRAWING}
 
     public NoteView(@NonNull Activity activity) {
         super(activity);
@@ -57,10 +57,6 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
         new NotesListPresenter(notesList, loaderManager, activity.getIntent().getStringExtra(NoteActivity.FOLDER_ID));
 
 
-    }
-
-    public void showMessage(String message) {
-        Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
