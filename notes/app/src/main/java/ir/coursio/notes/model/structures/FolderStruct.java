@@ -1,4 +1,4 @@
-package ir.coursio.notes.model;
+package ir.coursio.notes.model.structures;
 
 import android.database.Cursor;
 
