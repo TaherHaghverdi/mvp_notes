@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="@dimen/toolbar_elevation" />
+
+    <EditText
+        android:id="@+id/edtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/add_note_side_item_margin"
+        android:background="@android:color/transparent"
+        android:hint="@string/hint_add_drawing_title"
+        android:inputType="textPersonName"
+        android:maxLines="1"
+        android:textColor="@color/colorAccent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/add_note_side_action_margin"
+        android:paddingStart="@dimen/add_note_side_action_margin">
+
+        <ImageView
+            android:id="@+id/imgEraser"
+            android:layout_width="@dimen/add_note_utilities_img_size"
+            android:layout_height="@dimen/add_note_utilities_img_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:scaleType="center"
+            android:src="@drawable/ic_eraser_24dp" />
+
+        <ImageView
+            android:id="@+id/imgItalic"
+            android:layout_width="@dimen/add_note_utilities_img_size"
+            android:layout_height="@dimen/add_note_utilities_img_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="center"
+            android:src="@drawable/ic_format_italic_24dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/imgClear"
+            android:layout_width="@dimen/add_note_utilities_img_size"
+            android:layout_height="@dimen/add_note_utilities_img_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="center"
+            android:src="@drawable/ic_clear_24dp" />
+    </LinearLayout>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_separator"
+        android:layout_marginBottom="@dimen/add_note_side_item_margin"
+        android:layout_marginLeft="@dimen/add_note_side_item_margin"
+        android:layout_marginRight="@dimen/add_note_side_item_margin"
+        android:background="@color/menu_separator_color" />
+
+    <ir.coursio.notes.view.custom.DrawingView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

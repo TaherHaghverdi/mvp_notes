@@ -9,6 +9,7 @@
     <string name="fab_add_text_title">Add Text</string>
     <string name="fab_add_drawing_title">Add Drawing</string>
 
+    <string name="hint_add_drawing_title">Drawing Title</string>
     <string name="hint_add_note_title">Note Title</string>
     <string name="hint_add_note_text">What is on you mind?</string>
 
