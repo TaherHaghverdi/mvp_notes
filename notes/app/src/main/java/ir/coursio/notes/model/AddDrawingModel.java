@@ -55,4 +55,12 @@ public class AddDrawingModel {
         activity.finish();
     }
 
+    public boolean isInEditMode() {
+        return activity.getIntent().getBooleanExtra(IS_EDITING, false);
+    }
+
+    public NoteStruct getExtraNote() {
+        return activity.getIntent().getParcelableExtra(NOTE);
+    }
+
 }

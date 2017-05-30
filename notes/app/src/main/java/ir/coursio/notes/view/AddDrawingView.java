@@ -2,12 +2,12 @@ package ir.coursio.notes.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.Typeface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -15,8 +15,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import ir.coursio.notes.R;
+import ir.coursio.notes.model.structures.NoteStruct;
 import ir.coursio.notes.presenter.AddDrawingPresenter;
-import ir.coursio.notes.util.TextStyleHandler;
 import ir.coursio.notes.view.custom.DrawingView;
 
 /**
@@ -27,8 +27,8 @@ import ir.coursio.notes.view.custom.DrawingView;
 public class AddDrawingView extends FrameLayout implements View.OnClickListener {
 
     private AddDrawingPresenter presenter;
-    private boolean isErasing = false;
-    DrawingView painting;
+    private DrawingView painting;
+    private EditText edtTitle;
 
     private enum ClickedActionItem {ERASER, CLEAR}
 
@@ -36,7 +36,7 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
         super(activity);
         View view = inflate(getContext(), R.layout.activity_add_drawing, this);
 
-        final EditText edtTitle = (EditText) view.findViewById(R.id.edtTitle);
+        edtTitle = (EditText) view.findViewById(R.id.edtTitle);
         painting = (DrawingView) view.findViewById(R.id.painting);
 
         // Action item click listeners setup
@@ -94,5 +94,13 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
                 painting.changeColor();
                 break;
         }
+    }
+
+    public void editMode(NoteStruct note) {
+        edtTitle.setText(note.getTitle());
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inMutable = true;
+        Bitmap bmp = BitmapFactory.decodeByteArray(note.getDrawing(), 0, note.getDrawing().length, options);
+        painting.paintBitmap(bmp);
     }
 }

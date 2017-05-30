@@ -20,6 +20,10 @@ public class AddDrawingPresenter implements AddDrawingView.OnSaveListener {
 
     public void onCreate() {
         view.setPresenter(this);
+
+        if (model.isInEditMode()) {
+            view.editMode(model.getExtraNote());
+        }
     }
 
     public void onDestroy() {
