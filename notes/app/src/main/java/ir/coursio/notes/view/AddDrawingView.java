@@ -42,7 +42,7 @@ public class AddDrawingView extends FrameLayout {
         save.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                ((OnSaveListener) presenter).onSave(edtTitle.getText().toString());
+                ((OnSaveListener) presenter).onSave(edtTitle.getText().toString(), painting);
                 return false;
             }
         });
@@ -58,6 +58,6 @@ public class AddDrawingView extends FrameLayout {
     }
 
     public interface OnSaveListener {
-        void onSave(String title);
+        void onSave(String title, DrawingView drawingView);
     }
 }
