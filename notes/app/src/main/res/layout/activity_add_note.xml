@@ -17,8 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/add_note_side_item_margin"
+        android:inputType="textPersonName"
         android:background="@android:color/transparent"
         android:hint="@string/hint_add_note_title"
+        android:maxLines="1"
         android:textColor="@color/colorAccent" />
 
     <LinearLayout
