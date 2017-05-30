@@ -5,17 +5,20 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-import java.io.ByteArrayOutputStream;
 
 import ir.coursio.notes.R;
 import ir.coursio.notes.model.structures.NoteStruct;
@@ -32,6 +35,7 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
     private AddDrawingPresenter presenter;
     private DrawingView painting;
     private EditText edtTitle;
+    private LinearLayout mainLayout;
 
     private enum ClickedActionItem {ERASER, CLEAR}
 
@@ -41,6 +45,7 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
 
         edtTitle = (EditText) view.findViewById(R.id.edtTitle);
         painting = (DrawingView) view.findViewById(R.id.painting);
+        mainLayout = (LinearLayout) view.findViewById(R.id.mainLayout);
 
         // Action item click listeners setup
         ImageView imgEraser = (ImageView) view.findViewById(R.id.imgEraser);
@@ -99,14 +104,25 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
         }
     }
 
-    public void editMode(NoteStruct note) {
-        edtTitle.setText(note.getTitle());
-        Log.i("tag", "drawing is: " + note.getDrawing().length);
+    public void editMode(final NoteStruct note) {
+        mainLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                edtTitle.setText(note.getTitle());
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inMutable = true;
-        Bitmap bmp = BitmapFactory.decodeByteArray(note.getDrawing(), 0, note.getDrawing().length, options);
-        painting.paintBitmap(bmp);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inMutable = true;
+                Bitmap bmp = BitmapFactory.decodeByteArray(note.getDrawing(), 0, note.getDrawing().length, options);
+                painting.paintBitmap(bmp);
+
+                if (Build.VERSION.SDK_INT < 16) {
+                    mainLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                } else {
+                    mainLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+            }
+        });
+
 
     }
 }
