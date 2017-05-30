@@ -24,6 +24,7 @@
     <dimen name="menu_note_text_size">16sp</dimen>
     <dimen name="menu_note_id_img_size">24dp</dimen>
     <dimen name="add_note_side_item_margin">20dp</dimen>
+    <dimen name="add_note_side_action_margin">8dp</dimen>
     <dimen name="add_note_utilities_img_size">48dp</dimen>
 
 
