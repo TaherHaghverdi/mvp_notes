@@ -55,10 +55,20 @@ public class AddDrawingModel {
         activity.finish();
     }
 
+    /**
+     * Checks if we are editing an existing drawing or making new one
+     *
+     * @return boolean The extra boolean sent from NoteActivity
+     */
     public boolean isInEditMode() {
         return activity.getIntent().getBooleanExtra(IS_EDITING, false);
     }
 
+    /**
+     * Gets a NoteStruct instance with current note parameters.
+     *
+     * @return NoteStruct The NoteStruct that was clicked in NoteActivity
+     */
     public NoteStruct getExtraNote() {
         return activity.getIntent().getParcelableExtra(NOTE);
     }
