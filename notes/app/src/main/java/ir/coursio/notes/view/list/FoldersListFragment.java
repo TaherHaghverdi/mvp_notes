@@ -70,11 +70,11 @@ public class FoldersListFragment extends Fragment implements FoldersComponent.Vi
      * @param id select specific folder to get it's data
      */
     @Override
-    public void onFolderClicked(String id) {
-        ((OnFolderClickedListener) getContext()).onFolderClicked(id);
+    public void onFolderClicked(String id, String name) {
+        ((OnFolderClickedListener) getContext()).onFolderClicked(id, name);
     }
 
     public interface OnFolderClickedListener {
-        void onFolderClicked(String id);
+        void onFolderClicked(String id, String name);
     }
 }

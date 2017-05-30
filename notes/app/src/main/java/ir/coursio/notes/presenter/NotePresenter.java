@@ -19,8 +19,8 @@ public class NotePresenter implements NoteView.OnNewNoteRequestListener {
     }
 
     public void onCreate() {
-
         view.setPresenter(this);
+        view.setToolbarTitle(model.getFolderName());
     }
 
     public void onDestroy() {

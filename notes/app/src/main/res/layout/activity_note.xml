@@ -8,7 +8,7 @@
     tools:context="ir.coursio.notes.NoteActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_main"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"

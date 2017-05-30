@@ -42,6 +42,7 @@ public class FolderAdapter extends RecyclerView.Adapter {
             viewHolder.bindView(folders.get(position));
         }
     }
+
     private class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtFolderName;
         private View view;
@@ -57,7 +58,7 @@ public class FolderAdapter extends RecyclerView.Adapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onFolderClickedListener.onFolderClicked(mFolder.getId());
+                    onFolderClickedListener.onFolderClicked(mFolder.getId(), mFolder.getName());
                 }
             });
 
@@ -74,7 +75,7 @@ public class FolderAdapter extends RecyclerView.Adapter {
     }
 
     public interface onFolderClickedListener {
-        void onFolderClicked(String id);
+        void onFolderClicked(String id, String name);
     }
 
     /**

@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -27,7 +28,10 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
 
     private NotePresenter presenter;
     private FloatingActionsMenu fabAddNote;
+
     private enum ClickedItemType {TEXT, DRAWING}
+
+    Toolbar toolbar;
 
     public NoteView(@NonNull final Activity activity) {
         super(activity);
@@ -36,7 +40,7 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
         final ViewGroup mainLayout = (ViewGroup) view.findViewById(R.id.mainLayout);
 
         //FloatingActionButtons setup
-         fabAddNote = (FloatingActionsMenu) view.findViewById(R.id.fabAddNote);
+        fabAddNote = (FloatingActionsMenu) view.findViewById(R.id.fabAddNote);
         FloatingActionButton fabAddText = (FloatingActionButton) view.findViewById(R.id.fabAddText);
         FloatingActionButton fabAddDrawing = (FloatingActionButton) view.findViewById(R.id.fabAddDrawing);
         fabAddText.setTag(ClickedItemType.TEXT);
@@ -55,6 +59,9 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
                     add(R.id.mainLayout, notesList, "NotesFragment").commitAllowingStateLoss();
         }
         new NotesListPresenter(notesList, loaderManager, activity.getIntent().getStringExtra(NoteModel.FOLDER_ID));
+
+        //Toolbar setup
+        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
     }
 
     public void setPresenter(NotePresenter presenter) {
@@ -85,5 +92,9 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
         void onNewTextNoteRequest();
 
         void onNewDrawingNoteRequest();
+    }
+
+    public void setToolbarTitle(String title) {
+        toolbar.setTitle(title);
     }
 }

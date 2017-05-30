@@ -14,6 +14,7 @@ import ir.coursio.notes.model.structures.NoteStruct;
 
 public class NoteModel {
     public static final String FOLDER_ID = "folder_id";
+    public static final String FOLDER_NAME = "folder_name";
 
     private final Activity activity;
 
@@ -33,7 +34,6 @@ public class NoteModel {
         activity.startActivity(intent);
     }
 
-
     public void editNoteRequest(NoteStruct note) {
         if (!note.isPainting()) {
             Intent intent = new Intent(activity, AddNoteActivity.class);
@@ -48,5 +48,9 @@ public class NoteModel {
             intent.putExtra(AddDrawingModel.NOTE, note);
             activity.startActivity(intent);
         }
+    }
+
+    public String getFolderName() {
+        return activity.getIntent().getStringExtra(FOLDER_NAME);
     }
 }

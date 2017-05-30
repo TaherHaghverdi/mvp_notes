@@ -33,9 +33,10 @@ public class MainActivity extends BaseActivity implements FoldersListFragment.On
      * @param id folder's id
      */
     @Override
-    public void onFolderClicked(String id) {
+    public void onFolderClicked(String id,String name) {
         Intent intent = new Intent(this, NoteActivity.class);
         intent.putExtra(NoteModel.FOLDER_ID, id);
+        intent.putExtra(NoteModel.FOLDER_NAME, name);
         startActivity(intent);
 
     }
