@@ -1,6 +1,8 @@
 package ir.coursio.notes;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import ir.coursio.notes.model.MainModel;
@@ -33,7 +35,7 @@ public class MainActivity extends BaseActivity implements FoldersListFragment.On
      * @param id folder's id
      */
     @Override
-    public void onFolderClicked(String id,String name) {
+    public void onFolderClicked(String id, String name) {
         Intent intent = new Intent(this, NoteActivity.class);
         intent.putExtra(NoteModel.FOLDER_ID, id);
         intent.putExtra(NoteModel.FOLDER_NAME, name);
@@ -56,5 +58,17 @@ public class MainActivity extends BaseActivity implements FoldersListFragment.On
     @Override
     public void onSaveClickListener(String name) {
         presenter.addFolderToDb(name);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == Activity.RESULT_OK) {
+                    model.importDatabase(data.getData().getPath());
+                }
+                break;
+        }
     }
 }

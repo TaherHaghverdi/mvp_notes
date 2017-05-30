@@ -40,6 +40,7 @@ public class DataBackupHandler {
             Toast.makeText(App.getAppContext(), "Saved backups successfully :)", Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
+            Toast.makeText(App.getAppContext(), "Export Failed :(", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -66,6 +67,7 @@ public class DataBackupHandler {
                 activity.recreate();
             }
         } catch (Exception e) {
+            Toast.makeText(App.getAppContext(), "Import Failed :(", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }

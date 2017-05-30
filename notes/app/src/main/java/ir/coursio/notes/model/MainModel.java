@@ -3,11 +3,13 @@ package ir.coursio.notes.model;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 
 import java.util.ArrayList;
 
 import ir.coursio.notes.App;
 import ir.coursio.notes.MainActivity;
+import ir.coursio.notes.model.db.DataBackupHandler;
 import ir.coursio.notes.model.db.DataContract;
 import ir.coursio.notes.util.PermissionHandler;
 
@@ -28,4 +30,22 @@ public class MainModel {
         values.put(DataContract.FoldersEntry.COLUMN_FOLDER_NAME, name);
         App.getAppContext().getContentResolver().insert(DataContract.FoldersEntry.CONTENT_URI, values);
     }
+
+    public void getImportPath() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        activity.startActivityForResult(intent, 1);
+    }
+
+    public void importDatabase(String path){
+        DataBackupHandler.importDb(path,activity);
+
+    }
+    public void exportDatabase() {
+        DataBackupHandler.exportDB();
+    }
+
+
+
 }

@@ -15,5 +15,8 @@
 
     <string name="message_no_text_selected">Select a text</string>
     <string name="message_no_text_warning">You can\'t save a note without text</string>
+    <string name="message_no_permission_warning">We need storage permission to proceed</string>
 
+    <string name="import_db">Import Database</string>
+    <string name="export_db">Export Database</string>
 </resources>

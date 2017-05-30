@@ -9,6 +9,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -30,6 +32,8 @@ public class MainView extends FrameLayout implements View.OnClickListener {
 
     ViewGroup mainLayout;
     FragmentManager fragmentManager;
+    MainPresenter presenter;
+
 
     public MainView(@NonNull Activity activity) {
         super(activity);
@@ -39,6 +43,8 @@ public class MainView extends FrameLayout implements View.OnClickListener {
         FloatingActionButton fabAddFolder = (FloatingActionButton) view.findViewById(R.id.fabAddFolder);
         fabAddFolder.setOnClickListener(this);
 
+
+        //Setup folders list
         fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
         LoaderManager loaderManager = ((FragmentActivity) activity).getSupportLoaderManager();
         FoldersListFragment foldersListFragment = (FoldersListFragment) fragmentManager.findFragmentByTag("FoldersListFragment");
@@ -48,6 +54,12 @@ public class MainView extends FrameLayout implements View.OnClickListener {
                     .add(R.id.mainLayout, foldersListFragment, "CategoryFragment").commitAllowingStateLoss();
         }
         new FoldersListPresenter(foldersListFragment, loaderManager);
+
+        //Setup Toolbar
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_main);
+        toolbar.inflateMenu(R.menu.import_export_toolbar);
+        toolbar.getMenu().findItem(R.id.export_db).setOnMenuItemClickListener(onMenuItemClickListener);
+        toolbar.getMenu().findItem(R.id.import_db).setOnMenuItemClickListener(onMenuItemClickListener);
     }
 
     public void showMessage(String message) {
@@ -55,8 +67,7 @@ public class MainView extends FrameLayout implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onClick(final View v) {
         String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,};
         new PermissionHandler().checkPermission((Activity) getContext(), permissions, new PermissionHandler.OnPermissionResponse() {
@@ -69,10 +80,43 @@ public class MainView extends FrameLayout implements View.OnClickListener {
 
             @Override
             public void onPermissionDenied() {
-                // Show an alert dialog
+                showMessage(getContext().getString(R.string.message_no_permission_warning));
             }
         });
 
     }
+
+    public void setPresenter(MainPresenter presenter) {
+        this.presenter = presenter;
+    }
+
+
+    MenuItem.OnMenuItemClickListener onMenuItemClickListener = new MenuItem.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(final MenuItem item) {
+            String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,};
+            new PermissionHandler().checkPermission((Activity) getContext(), permissions, new PermissionHandler.OnPermissionResponse() {
+                @Override
+                public void onPermissionGranted() {
+                    switch (item.getItemId()) {
+                        case R.id.import_db:
+                            presenter.importDatabase();
+                            break;
+                        case R.id.export_db:
+                            presenter.exportDatabase();
+                            break;
+
+                    }
+                }
+
+                @Override
+                public void onPermissionDenied() {
+                    showMessage(getContext().getString(R.string.message_no_permission_warning));
+                }
+            });
+            return false;
+        }
+    };
 
 }
