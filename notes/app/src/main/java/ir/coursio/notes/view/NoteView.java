@@ -16,6 +16,7 @@ import ir.coursio.notes.model.NoteModel;
 import ir.coursio.notes.presenter.NotePresenter;
 import ir.coursio.notes.presenter.NotesListPresenter;
 import ir.coursio.notes.view.custom.fab.FloatingActionButton;
+import ir.coursio.notes.view.custom.fab.FloatingActionsMenu;
 import ir.coursio.notes.view.list.NotesListFragment;
 
 /**
@@ -25,19 +26,18 @@ import ir.coursio.notes.view.list.NotesListFragment;
 @SuppressLint("ViewConstructor")
 public class NoteView extends FrameLayout implements View.OnClickListener {
 
-    ViewGroup mainLayout;
-    FragmentManager fragmentManager;
-    NotePresenter presenter;
-
+    private NotePresenter presenter;
+    private FloatingActionsMenu fabAddNote;
     private enum ClickedItemType {TEXT, DRAWING}
 
     public NoteView(@NonNull Activity activity) {
         super(activity);
         View view = inflate(getContext(), R.layout.activity_note, this);
 
-        mainLayout = (ViewGroup) view.findViewById(R.id.mainLayout);
+        final ViewGroup mainLayout = (ViewGroup) view.findViewById(R.id.mainLayout);
 
         //FloatingActionButtons setup
+         fabAddNote = (FloatingActionsMenu) view.findViewById(R.id.fabAddNote);
         FloatingActionButton fabAddText = (FloatingActionButton) view.findViewById(R.id.fabAddText);
         FloatingActionButton fabAddDrawing = (FloatingActionButton) view.findViewById(R.id.fabAddDrawing);
         fabAddText.setTag(ClickedItemType.TEXT);
@@ -46,7 +46,7 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
         fabAddText.setOnClickListener(this);
 
         //Notes list setup
-        fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
+        FragmentManager fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
         LoaderManager loaderManager = ((FragmentActivity) activity).getSupportLoaderManager();
 
         NotesListFragment notesList = (NotesListFragment) fragmentManager.findFragmentByTag("NotesListFragment");
@@ -64,8 +64,9 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch ((ClickedItemType) v.getTag()) {
+        fabAddNote.collapseImmediately();
 
+        switch ((ClickedItemType) v.getTag()) {
             //Create new Note
             case TEXT:
                 ((OnNewNoteRequestListener) presenter).onNewTextNoteRequest();
