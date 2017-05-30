@@ -26,9 +26,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:paddingEnd="@dimen/add_note_side_action_margin"
-        android:paddingStart="@dimen/add_note_side_action_margin"
-        android:orientation="horizontal">
+        android:paddingStart="@dimen/add_note_side_action_margin">
 
         <ImageView
             android:id="@+id/imgBold"

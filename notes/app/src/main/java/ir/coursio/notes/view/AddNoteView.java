@@ -4,17 +4,22 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.support.v7.widget.Toolbar;
 
 import ir.coursio.notes.R;
+import ir.coursio.notes.model.structures.NoteStruct;
 import ir.coursio.notes.presenter.AddNotePresenter;
 import ir.coursio.notes.util.TextStyleHandler;
 
@@ -26,8 +31,9 @@ import ir.coursio.notes.util.TextStyleHandler;
 @SuppressLint("ViewConstructor")
 public class AddNoteView extends FrameLayout implements View.OnClickListener {
 
-    private EditText edtText;
+    private EditText edtText, edtTitle;
     private AddNotePresenter presenter;
+    private ViewGroup mainLayout;
 
     private enum ClickedActionItem {BOLD, ITALIC, CLEAR}
 
@@ -36,8 +42,9 @@ public class AddNoteView extends FrameLayout implements View.OnClickListener {
         View view = inflate(getContext(), R.layout.activity_add_note, this);
 
 
-        final EditText edtTitle = (EditText) view.findViewById(R.id.edtTitle);
+        edtTitle = (EditText) view.findViewById(R.id.edtTitle);
         edtText = (EditText) view.findViewById(R.id.edtText);
+        mainLayout = (ViewGroup) view.findViewById(R.id.mainLayout);
 
 
         // Action item click listeners setup
@@ -60,7 +67,11 @@ public class AddNoteView extends FrameLayout implements View.OnClickListener {
         save.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                ((OnSaveListener) presenter).onSave(edtTitle.getText().toString(), edtText.getText());
+                if (edtText.getText().toString().equals("")) {
+                    showMessage(getContext().getString(R.string.message_no_text_warning));
+                } else {
+                    ((OnSaveListener) presenter).onSave(edtTitle.getText().toString(), edtText.getText());
+                }
                 return false;
             }
         });
@@ -72,7 +83,7 @@ public class AddNoteView extends FrameLayout implements View.OnClickListener {
         });
     }
 
-    public void setPresenter(AddNotePresenter presenter){
+    public void setPresenter(AddNotePresenter presenter) {
         this.presenter = presenter;
     }
 
@@ -91,6 +102,20 @@ public class AddNoteView extends FrameLayout implements View.OnClickListener {
                 edtText.setText("");
                 break;
         }
+    }
+
+    public void editMode(NoteStruct note) {
+        edtTitle.setText(note.getTitle());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            edtText.setText(Html.fromHtml(note.getText(), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            edtText.setText(Html.fromHtml(note.getText()));
+        }
+    }
+
+    private void showMessage(String message) {
+        Snackbar.make(mainLayout, message, Snackbar.LENGTH_LONG).show();
+
     }
 
     private Drawable getIcon(int id) {

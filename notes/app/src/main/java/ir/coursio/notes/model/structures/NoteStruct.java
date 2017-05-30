@@ -3,6 +3,7 @@ package ir.coursio.notes.model.structures;
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import ir.coursio.notes.model.db.DataContract;
 
@@ -25,11 +26,7 @@ public class NoteStruct implements Parcelable {
         text = data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_TEXT));
         folderId = data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_FOLDER_ID));
         drawing = data.getBlob(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_DRAW));
-        if (drawing == null) {
-            painting = false;
-        } else {
-            painting = true;
-        }
+        painting = text == null;
     }
 
 

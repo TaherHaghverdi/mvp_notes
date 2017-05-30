@@ -14,5 +14,6 @@
     <string name="hint_add_note_text">What is on you mind?</string>
 
     <string name="message_no_text_selected">Select a text</string>
+    <string name="message_no_text_warning">You can\'t save a note without text</string>
 
 </resources>
