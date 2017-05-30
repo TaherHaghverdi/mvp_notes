@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/add_note_side_item_margin"
         android:background="@android:color/transparent"
-        android:hint="@string/hint_add_note_title" />
+        android:hint="@string/hint_add_note_title"
+        android:textColor="@color/colorAccent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,6 +30,8 @@
             android:id="@+id/imgBold"
             android:layout_width="@dimen/add_note_utilities_img_size"
             android:layout_height="@dimen/add_note_utilities_img_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
             android:scaleType="center"
             android:src="@drawable/ic_format_bold_24dp" />
 
@@ -36,6 +39,7 @@
             android:id="@+id/imgItalic"
             android:layout_width="@dimen/add_note_utilities_img_size"
             android:layout_height="@dimen/add_note_utilities_img_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="center"
             android:src="@drawable/ic_format_italic_24dp" />
 
@@ -43,6 +47,7 @@
             android:id="@+id/imgPaste"
             android:layout_width="@dimen/add_note_utilities_img_size"
             android:layout_height="@dimen/add_note_utilities_img_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="center"
             android:src="@drawable/ic_content_paste_24dp" />
     </LinearLayout>
