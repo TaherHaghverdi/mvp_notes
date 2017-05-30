@@ -14,7 +14,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     //Database
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "notes.db";
+    static final String DATABASE_NAME = "notes.db";
 
     //Util Strings
     private static final String TEXT_TYPE = " TEXT";
