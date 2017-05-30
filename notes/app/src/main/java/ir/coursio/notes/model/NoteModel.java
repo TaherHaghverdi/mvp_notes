@@ -35,7 +35,7 @@ public class NoteModel {
 
 
     public void editNoteRequest(NoteStruct note) {
-        if (note.isPainting()) {
+        if (!note.isPainting()) {
             Intent intent = new Intent(activity, AddNoteActivity.class);
             intent.putExtra(AddNoteModel.FOLDER_ID, note.getFolderId());
             intent.putExtra(AddNoteModel.IS_EDITING, true);

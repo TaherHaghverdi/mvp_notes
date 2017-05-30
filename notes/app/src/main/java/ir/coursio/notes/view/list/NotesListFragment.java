@@ -1,6 +1,5 @@
 package ir.coursio.notes.view.list;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,7 +21,7 @@ import ir.coursio.notes.view.adapter.NoteAdapter;
  * Project: notes
  */
 
-public class NotesListFragment extends Fragment implements NotesComponent.View, NoteAdapter.Listener {
+public class NotesListFragment extends Fragment implements NotesComponent.View, NoteAdapter.OnNoteAdapterClickedListener {
 
     private NotesComponent.Presenter presenter;
     private NoteAdapter adapter;
@@ -72,7 +71,7 @@ public class NotesListFragment extends Fragment implements NotesComponent.View, 
      * @param note the specific note that was selected
      */
     @Override
-    public void onNoteSelect(NoteStruct note) {
+    public void onNoteAdapterClicked(NoteStruct note) {
         ((OnNoteClickedListener) getContext()).onNoteClicked(note);
     }
 

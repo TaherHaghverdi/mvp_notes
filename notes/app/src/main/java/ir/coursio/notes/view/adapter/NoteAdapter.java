@@ -24,13 +24,13 @@ import ir.coursio.notes.model.structures.NoteStruct;
 public class NoteAdapter extends RecyclerView.Adapter {
     private Context context;
     private ArrayList<NoteStruct> notes;
-    private Listener listener;
+    private OnNoteAdapterClickedListener onNoteAdapterClickedListener;
 
 
-    public NoteAdapter(Context context, ArrayList<NoteStruct> notes, Listener listener) {
+    public NoteAdapter(Context context, ArrayList<NoteStruct> notes, OnNoteAdapterClickedListener onNoteAdapterClickedListener) {
         this.context = context;
         this.notes = notes;
-        this.listener = listener;
+        this.onNoteAdapterClickedListener = onNoteAdapterClickedListener;
     }
 
 
@@ -57,8 +57,8 @@ public class NoteAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public interface Listener {
-        void onNoteSelect(NoteStruct note);
+    public interface OnNoteAdapterClickedListener {
+        void onNoteAdapterClicked(NoteStruct note);
     }
 
 
@@ -102,7 +102,7 @@ public class NoteAdapter extends RecyclerView.Adapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onNoteSelect(note);
+                    onNoteAdapterClickedListener.onNoteAdapterClicked(note);
                 }
             });
         }
