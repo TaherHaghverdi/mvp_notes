@@ -3,8 +3,7 @@
     <dimen name="menu_separator">1sp</dimen>
 
 
-    <dimen name="main_toolbar_elevation">4dp</dimen>
-    <dimen name="note_toolbar_elevation">4dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
 
 
     <!-- Folders -->
