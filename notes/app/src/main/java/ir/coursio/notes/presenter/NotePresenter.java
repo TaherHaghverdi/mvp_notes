@@ -27,7 +27,12 @@ public class NotePresenter implements NoteView.OnNewNoteRequestListener {
     }
 
     @Override
-    public void onNewNoteRequest() {
-        model.newNoteRequest();
+    public void onNewTextNoteRequest() {
+        model.newTextNoteRequest();
+    }
+
+    @Override
+    public void onNewDrawingNoteRequest() {
+        model.newDrawingNoteRequest();
     }
 }

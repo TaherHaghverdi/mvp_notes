@@ -3,6 +3,7 @@ package ir.coursio.notes.model;
 import android.app.Activity;
 import android.content.Intent;
 
+import ir.coursio.notes.AddDrawingActivity;
 import ir.coursio.notes.AddNoteActivity;
 
 /**
@@ -19,8 +20,14 @@ public class NoteModel {
         this.activity = activity;
     }
 
-    public void newNoteRequest() {
+    public void newTextNoteRequest() {
         Intent intent = new Intent(activity, AddNoteActivity.class);
+        intent.putExtra(FOLDER_ID, activity.getIntent().getStringExtra(FOLDER_ID));
+        activity.startActivity(intent);
+    }
+
+    public void newDrawingNoteRequest() {
+        Intent intent = new Intent(activity, AddDrawingActivity.class);
         intent.putExtra(FOLDER_ID, activity.getIntent().getStringExtra(FOLDER_ID));
         activity.startActivity(intent);
     }

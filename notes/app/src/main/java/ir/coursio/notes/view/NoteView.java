@@ -68,12 +68,12 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
 
             //Create new Note
             case TEXT:
-                ((OnNewNoteRequestListener) presenter).onNewNoteRequest();
+                ((OnNewNoteRequestListener) presenter).onNewTextNoteRequest();
                 break;
 
             //Create new Drawing
             case DRAWING:
-                Toast.makeText(getContext(), "Drawing", Toast.LENGTH_SHORT).show();
+                ((OnNewNoteRequestListener) presenter).onNewDrawingNoteRequest();
                 break;
         }
     }
@@ -82,6 +82,8 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
      * This interface request presenter to make or update a note.
      */
     public interface OnNewNoteRequestListener {
-        void onNewNoteRequest();
+        void onNewTextNoteRequest();
+
+        void onNewDrawingNoteRequest();
     }
 }

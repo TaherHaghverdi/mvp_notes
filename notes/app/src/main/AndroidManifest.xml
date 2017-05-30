@@ -13,22 +13,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-        </activity>
-
-        <provider
-            android:name=".model.db.DataProvider"
-            android:authorities="ir.coursio.notes"
-            android:exported="false" />
-        <activity android:name=".NoteActivity" />
-        <activity android:name=".AddNoteActivity"/>
-        <activity android:name=".AddDrawingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".model.db.DataProvider"
+            android:authorities="ir.coursio.notes"
+            android:exported="false" />
+
+        <activity android:name=".NoteActivity" />
+        <activity android:name=".AddNoteActivity" />
+        <activity android:name=".AddDrawingActivity" />
     </application>
 
 </manifest>
