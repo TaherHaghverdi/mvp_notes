@@ -50,6 +50,6 @@ public class AddNoteModel {
             App.getAppContext().getContentResolver().insert(Uri.withAppendedPath(DataContract.FoldersEntry.CONTENT_URI_NOTES
                     , intent.getStringExtra(FOLDER_ID)), values);
         }
-
+        activity.finish();
     }
 }

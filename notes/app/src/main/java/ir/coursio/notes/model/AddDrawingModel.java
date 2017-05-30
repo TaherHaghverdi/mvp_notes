@@ -29,38 +29,30 @@ public class AddDrawingModel {
     }
 
     /**
-     * This method gets user drawing as a bitmap and covert it to stream of bytes.
-     * Then store them as an array of bytes.
+     * This method store user drawing as an array of bytes.
      * If isEditing is true means user is editing an existing note otherwise user is making new note.
      *
      * @param title       string that is title of drawing note
      * @param drawingView the view that contains user drawing input
      */
     public void saveDrawing(String title, DrawingView drawingView) {
-        drawingView.setPaintXfermode();
-        drawingView.buildDrawingCache();
-        Bitmap signature = drawingView.getDrawingCache();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        signature.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-
-
         ContentValues values = new ContentValues();
         values.put(DataContract.NoteEntry.COLUMN_NOTE_TITLE, title);
-        values.put(DataContract.NoteEntry.COLUMN_NOTE_DRAW, byteArray);
+        values.put(DataContract.NoteEntry.COLUMN_NOTE_DRAW, drawingView.getByteArray());
         values.put(DataContract.NoteEntry.COLUMN_FOLDER_ID, activity.getIntent().getStringExtra(FOLDER_ID));
 
-        if (activity.getIntent().getBooleanExtra(IS_EDITING, false))
+        if (activity.getIntent().getBooleanExtra(IS_EDITING, false)) {
             App.getAppContext().getContentResolver().
                     update(Uri.withAppendedPath(DataContract.FoldersEntry.CONTENT_URI_NOTES
                             , activity.getIntent().getStringExtra(FOLDER_ID)), values, DataContract.NoteEntry._ID + "=" + ((NoteStruct) activity.getIntent().getParcelableExtra(NOTE)).getId(), null);
-        else
+        } else {
             App.getAppContext().getContentResolver().insert(Uri.withAppendedPath(DataContract.FoldersEntry.CONTENT_URI_NOTES
                     , activity.getIntent().getStringExtra(FOLDER_ID)), values);
+        }
 
-        signature.recycle();
+        drawingView.getDrawingCache().recycle();
         drawingView.destroyDrawingCache();
-
-
+        activity.finish();
     }
+
 }

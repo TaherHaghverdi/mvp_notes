@@ -15,6 +15,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.io.ByteArrayOutputStream;
+
 import ir.coursio.notes.R;
 
 /**
@@ -83,9 +85,11 @@ public class DrawingView extends View {
         invalidate();
         return true;
     }
-public void changeColor(){
-    mPaint.setColor(Color.BLUE);
-}
+
+    public void changeColor() {
+        mPaint.setColor(Color.BLUE);
+    }
+
     public void paintBitmap(Bitmap bmp) {
         mBitmap = bmp;
         mCanvas = new Canvas(mBitmap);
@@ -107,4 +111,11 @@ public void changeColor(){
         mPaint.setXfermode(null);
     }
 
+    public byte[] getByteArray() {
+        this.setPaintXfermode();
+        this.buildDrawingCache();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        this.getDrawingCache().compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
 }
