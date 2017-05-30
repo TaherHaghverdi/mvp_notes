@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,7 +87,12 @@ public class NoteAdapter extends RecyclerView.Adapter {
 
             if (note.getDrawing() == null) {
                 setImageDrawable(R.drawable.ic_note_24dp, imgId);
-                txtText.setText(note.getText());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    txtText.setText(Html.fromHtml(note.getText(), Html.FROM_HTML_MODE_COMPACT));
+                }else{
+                    txtText.setText(Html.fromHtml(note.getText()));
+                }
+
             } else {
                 setImageDrawable(R.drawable.ic_image_24dp, imgId);
                 txtText.setVisibility(View.GONE);
