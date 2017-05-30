@@ -14,7 +14,7 @@ import ir.coursio.notes.view.list.NotesListFragment;
  * Project: notes
  */
 
-public class NoteActivity extends AppCompatActivity implements NotesListFragment.Listener{
+public class NoteActivity extends AppCompatActivity implements NotesListFragment.OnNoteClickedListener {
 
     public static final String FOLDER_ID = "folder_id";
 
@@ -43,7 +43,7 @@ public class NoteActivity extends AppCompatActivity implements NotesListFragment
     }
 
     @Override
-    public void goToNote(NoteStruct note) {
+    public void onNoteClicked(NoteStruct note) {
 
     }
 }

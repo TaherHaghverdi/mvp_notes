@@ -26,7 +26,6 @@ public class NotesListFragment extends Fragment implements NotesComponent.View, 
 
     private NotesComponent.Presenter presenter;
     private NoteAdapter adapter;
-    private Listener listener;
 
     @Nullable
     @Override
@@ -74,19 +73,13 @@ public class NotesListFragment extends Fragment implements NotesComponent.View, 
      */
     @Override
     public void onNoteSelect(NoteStruct note) {
-        listener.goToNote(note);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        listener = (NotesListFragment.Listener) context;
+        ((OnNoteClickedListener) getContext()).onNoteClicked(note);
     }
 
     /**
-     * This interface is a listener to be implemented in activity to show notes to users.
+     * This interface is a onNoteClickedListener to be implemented in activity to show notes to users.
      */
-    public interface Listener {
-        void goToNote(NoteStruct note);
+    public interface OnNoteClickedListener {
+        void onNoteClicked(NoteStruct note);
     }
 }
