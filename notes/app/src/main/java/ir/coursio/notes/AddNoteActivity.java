@@ -22,10 +22,20 @@ public class AddNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        view = new AddNoteView(this);
+        model = new AddNoteModel(this);
+
+        setContentView(view);
+
+        presenter = new AddNotePresenter(view, model);
+        presenter.onCreate();
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        presenter.onDestroy();
     }
 }
