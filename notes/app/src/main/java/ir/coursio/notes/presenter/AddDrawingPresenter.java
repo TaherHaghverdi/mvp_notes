@@ -8,7 +8,7 @@ import ir.coursio.notes.view.AddDrawingView;
  * Project: notes
  */
 
-public class AddDrawingPresenter {
+public class AddDrawingPresenter implements AddDrawingView.OnSaveListener {
     private AddDrawingView view;
     private AddDrawingModel model;
 
@@ -21,5 +21,10 @@ public class AddDrawingPresenter {
     }
 
     public void onDestroy() {
+    }
+
+    @Override
+    public void onSave(String title) {
+        model.saveDrawing();
     }
 }

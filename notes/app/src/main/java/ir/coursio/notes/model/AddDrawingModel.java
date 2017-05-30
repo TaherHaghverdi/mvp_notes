@@ -14,4 +14,7 @@ public class AddDrawingModel {
         this.activity = activity;
     }
 
+    public void saveDrawing(){
+
+    }
 }
