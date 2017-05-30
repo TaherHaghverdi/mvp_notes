@@ -18,13 +18,13 @@ import ir.coursio.notes.model.structures.FolderStruct;
  */
 
 public class FolderAdapter extends RecyclerView.Adapter {
-    //Custom listener to handle each item click
-    private Listener listener;
+    //Custom onFolderClickedListener to handle each item click
+    private onFolderClickedListener onFolderClickedListener;
     private ArrayList<FolderStruct> folders;
     private Context context;
 
-    public FolderAdapter(Listener listener, ArrayList<FolderStruct> folders, Context context) {
-        this.listener = listener;
+    public FolderAdapter(onFolderClickedListener onFolderClickedListener, ArrayList<FolderStruct> folders, Context context) {
+        this.onFolderClickedListener = onFolderClickedListener;
         this.folders = folders;
         this.context = context;
     }
@@ -57,7 +57,7 @@ public class FolderAdapter extends RecyclerView.Adapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onFolderSelect(mFolder.getId());
+                    onFolderClickedListener.onFolderClicked(mFolder.getId());
                 }
             });
 
@@ -73,8 +73,8 @@ public class FolderAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public interface Listener {
-        void onFolderSelect(String id);
+    public interface onFolderClickedListener {
+        void onFolderClicked(String id);
     }
 
     /**

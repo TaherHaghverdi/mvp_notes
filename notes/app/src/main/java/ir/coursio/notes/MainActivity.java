@@ -10,7 +10,7 @@ import ir.coursio.notes.view.MainView;
 import ir.coursio.notes.view.dialog.AddNewFolderDialog;
 import ir.coursio.notes.view.list.FoldersListFragment;
 
-public class MainActivity extends BaseActivity implements FoldersListFragment.Listener, AddNewFolderDialog.Listener {
+public class MainActivity extends BaseActivity implements FoldersListFragment.OnFolderClickedListener, AddNewFolderDialog.Listener {
 
     MainView view;
     MainModel model;
@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity implements FoldersListFragment.Li
      * @param id folder's id
      */
     @Override
-    public void goToFolder(String id) {
+    public void onFolderClicked(String id) {
         Intent intent = new Intent(this, NoteActivity.class);
         intent.putExtra(NoteModel.FOLDER_ID, id);
         startActivity(intent);

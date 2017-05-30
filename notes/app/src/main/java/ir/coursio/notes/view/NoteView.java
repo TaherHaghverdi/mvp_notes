@@ -9,7 +9,6 @@ import android.support.v4.app.LoaderManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import ir.coursio.notes.R;
 import ir.coursio.notes.model.NoteModel;
@@ -30,7 +29,7 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
     private FloatingActionsMenu fabAddNote;
     private enum ClickedItemType {TEXT, DRAWING}
 
-    public NoteView(@NonNull Activity activity) {
+    public NoteView(@NonNull final Activity activity) {
         super(activity);
         View view = inflate(getContext(), R.layout.activity_note, this);
 

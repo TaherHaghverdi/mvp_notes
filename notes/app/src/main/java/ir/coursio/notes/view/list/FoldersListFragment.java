@@ -1,6 +1,5 @@
 package ir.coursio.notes.view.list;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,11 +21,10 @@ import ir.coursio.notes.view.adapter.FolderAdapter;
  * Project: notes
  */
 
-public class FoldersListFragment extends Fragment implements FoldersComponent.View, FolderAdapter.Listener {
+public class FoldersListFragment extends Fragment implements FoldersComponent.View, FolderAdapter.onFolderClickedListener {
 
     private FoldersComponent.Presenter presenter;
     private FolderAdapter adapter;
-    private Listener listener;
 
     @Override
     public void onResume() {
@@ -65,24 +63,18 @@ public class FoldersListFragment extends Fragment implements FoldersComponent.Vi
      */
     @Override
     public void updateFolders(ArrayList<FolderStruct> folders) {
-            adapter.swapData(folders);
+        adapter.swapData(folders);
     }
 
     /**
      * @param id select specific folder to get it's data
      */
     @Override
-    public void onFolderSelect(String id) {
-        listener.goToFolder(id);
+    public void onFolderClicked(String id) {
+        ((OnFolderClickedListener) getContext()).onFolderClicked(id);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        listener = (Listener) context;
-    }
-
-    public interface Listener {
-        void goToFolder(String id);
+    public interface OnFolderClickedListener {
+        void onFolderClicked(String id);
     }
 }

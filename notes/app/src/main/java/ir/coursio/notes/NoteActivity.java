@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import ir.coursio.notes.model.AddDrawingModel;
+import ir.coursio.notes.model.AddNoteModel;
 import ir.coursio.notes.model.NoteModel;
 import ir.coursio.notes.model.structures.NoteStruct;
 import ir.coursio.notes.presenter.NotePresenter;
@@ -15,7 +17,7 @@ import ir.coursio.notes.view.list.NotesListFragment;
  * Project: notes
  */
 
-public class NoteActivity extends AppCompatActivity implements NotesListFragment.OnNoteClickedListener{
+public class NoteActivity extends AppCompatActivity implements NotesListFragment.OnNoteClickedListener {
 
     NoteView view;
     NotePresenter presenter;
@@ -43,7 +45,7 @@ public class NoteActivity extends AppCompatActivity implements NotesListFragment
 
     @Override
     public void onNoteClicked(NoteStruct note) {
-
+        model.editNoteRequest(note);
     }
 
 }

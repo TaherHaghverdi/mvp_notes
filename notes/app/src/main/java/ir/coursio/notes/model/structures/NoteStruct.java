@@ -17,13 +17,19 @@ public class NoteStruct implements Parcelable {
     private String text;
     private String folderId;
     private byte[] drawing;
+    private boolean painting; // checks whether a note is painting or text
 
     public NoteStruct(Cursor data) {
-        id= data.getString(data.getColumnIndex(DataContract.NoteEntry._ID));
-        title=data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_TITLE));
-        text =data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_TEXT));
-        folderId=data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_FOLDER_ID));
-        drawing=data.getBlob(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_DRAW));
+        id = data.getString(data.getColumnIndex(DataContract.NoteEntry._ID));
+        title = data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_TITLE));
+        text = data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_TEXT));
+        folderId = data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_FOLDER_ID));
+        drawing = data.getBlob(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_DRAW));
+        if (drawing == null) {
+            painting = false;
+        } else {
+            painting = true;
+        }
     }
 
 
@@ -79,5 +85,9 @@ public class NoteStruct implements Parcelable {
 
     public byte[] getDrawing() {
         return drawing;
+    }
+
+    public boolean isPainting() {
+        return painting;
     }
 }

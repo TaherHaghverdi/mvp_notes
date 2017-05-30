@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import ir.coursio.notes.AddDrawingActivity;
 import ir.coursio.notes.AddNoteActivity;
+import ir.coursio.notes.model.structures.NoteStruct;
 
 /**
  * Created by Taher on 29/05/2017.
@@ -32,4 +33,20 @@ public class NoteModel {
         activity.startActivity(intent);
     }
 
+
+    public void editNoteRequest(NoteStruct note) {
+        if (note.isPainting()) {
+            Intent intent = new Intent(activity, AddNoteActivity.class);
+            intent.putExtra(AddNoteModel.FOLDER_ID, note.getFolderId());
+            intent.putExtra(AddNoteModel.IS_EDITING, true);
+            intent.putExtra(AddNoteModel.NOTE, note);
+            activity.startActivity(intent);
+        } else {
+            Intent intent = new Intent(activity, AddDrawingActivity.class);
+            intent.putExtra(AddDrawingModel.FOLDER_ID, note.getFolderId());
+            intent.putExtra(AddDrawingModel.IS_EDITING, true);
+            intent.putExtra(AddDrawingModel.NOTE, note);
+            activity.startActivity(intent);
+        }
+    }
 }
