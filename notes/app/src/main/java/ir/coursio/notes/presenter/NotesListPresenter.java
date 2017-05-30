@@ -43,7 +43,7 @@ public class NotesListPresenter implements NotesComponent.Presenter, LoaderManag
         String[] projection = {"*"};
         return new CursorLoader(App.getAppContext(),
                 ContentUris.withAppendedId(DataContract.FoldersEntry.CONTENT_URI_NOTES, Integer.parseInt(folderId)),
-                projection,null,
+                projection, null,
                 null,
                 null);
 
@@ -52,13 +52,17 @@ public class NotesListPresenter implements NotesComponent.Presenter, LoaderManag
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         if (cursor != null) {
-            ArrayList<NoteStruct> notes = new ArrayList<>();
-            try {
-                while (cursor.moveToNext()) {
-                    notes.add(new NoteStruct(cursor));
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                ArrayList<NoteStruct> notes = new ArrayList<>();
+                try {
+                    do {
+                        notes.add(new NoteStruct(cursor));
+                    }
+                    while (cursor.moveToNext());
+                } finally {
+                    view.updateNotes(notes);
                 }
-            } finally {
-                view.updateNotes(notes);
             }
         }
     }
