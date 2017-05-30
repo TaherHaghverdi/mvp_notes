@@ -10,4 +10,7 @@
 
     <string name="hint_add_note_title">Note Title</string>
     <string name="hint_add_note_text">What is on you mind?</string>
+
+    <string name="message_no_text_selected">Select a text</string>
+
 </resources>

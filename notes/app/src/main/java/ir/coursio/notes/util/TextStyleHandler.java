@@ -27,7 +27,7 @@ public class TextStyleHandler {
      * @param editText The EditText to find selected part
      * @param style    The style to apply to selected part of the text
      */
-    private void applyStyleToText(EditText editText, int style) {
+    public void applyStyleToText(EditText editText, int style) {
         //Gets selected part of text
         int selectionStart = editText.getSelectionStart();
         int selectionEnd = editText.getSelectionEnd();
