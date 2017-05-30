@@ -2,6 +2,7 @@ package ir.coursio.notes.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -11,9 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import ir.coursio.notes.R;
 import ir.coursio.notes.presenter.AddDrawingPresenter;
+import ir.coursio.notes.util.TextStyleHandler;
 import ir.coursio.notes.view.custom.DrawingView;
 
 /**
@@ -21,16 +24,28 @@ import ir.coursio.notes.view.custom.DrawingView;
  * Project: notes
  */
 @SuppressLint("ViewConstructor")
-public class AddDrawingView extends FrameLayout {
+public class AddDrawingView extends FrameLayout implements View.OnClickListener {
 
     private AddDrawingPresenter presenter;
+    private boolean isErasing = false;
+    DrawingView painting;
 
-    public AddDrawingView(@NonNull Activity activity) {
+    private enum ClickedActionItem {ERASER, CLEAR}
+
+    public AddDrawingView(@NonNull final Activity activity) {
         super(activity);
         View view = inflate(getContext(), R.layout.activity_add_drawing, this);
 
         final EditText edtTitle = (EditText) view.findViewById(R.id.edtTitle);
-        final DrawingView painting = (DrawingView) view.findViewById(R.id.painting);
+        painting = (DrawingView) view.findViewById(R.id.painting);
+
+        // Action item click listeners setup
+        ImageView imgEraser = (ImageView) view.findViewById(R.id.imgEraser);
+        ImageView imgClear = (ImageView) view.findViewById(R.id.imgClear);
+        imgEraser.setOnClickListener(this);
+        imgClear.setOnClickListener(this);
+        imgEraser.setTag(ClickedActionItem.ERASER);
+        imgClear.setTag(ClickedActionItem.CLEAR);
 
 
         // Toolbar Setup
@@ -46,6 +61,12 @@ public class AddDrawingView extends FrameLayout {
                 return false;
             }
         });
+        toolbar.setNavigationOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.finish();
+            }
+        });
 
     }
 
@@ -59,5 +80,19 @@ public class AddDrawingView extends FrameLayout {
 
     public interface OnSaveListener {
         void onSave(String title, DrawingView drawingView);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+        switch ((ClickedActionItem) v.getTag()) {
+            case CLEAR:
+                painting.clear();
+                break;
+            case ERASER:
+                painting.changeColor();
+                break;
+        }
     }
 }

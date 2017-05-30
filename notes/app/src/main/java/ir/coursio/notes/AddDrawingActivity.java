@@ -21,11 +21,11 @@ public class AddDrawingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter.onCreate();
         model = new AddDrawingModel(this);
         view = new AddDrawingView(this);
-
+        setContentView(view);
         presenter = new AddDrawingPresenter(view, model);
+        presenter.onCreate();
 
     }
 

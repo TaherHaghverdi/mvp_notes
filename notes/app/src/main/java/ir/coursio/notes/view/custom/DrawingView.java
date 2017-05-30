@@ -10,9 +10,12 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import ir.coursio.notes.R;
 
 /**
  * Created by Taher on 30/05/2017.
@@ -25,8 +28,6 @@ public class DrawingView extends View {
     private Paint mPaint;
     private Canvas mCanvas;
     private Bitmap mBitmap;
-    private boolean isEraser = false;
-
 
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -36,8 +37,7 @@ public class DrawingView extends View {
     private void init() {
         mPath = new Path();
         mPaint = new Paint();
-        int paintColor = Color.BLACK;
-        mPaint.setColor(paintColor);
+        mPaint.setColor(Color.BLACK);
         mPaint.setAntiAlias(true);
         mPaint.setStrokeWidth(20);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -83,7 +83,9 @@ public class DrawingView extends View {
         invalidate();
         return true;
     }
-
+public void changeColor(){
+    mPaint.setColor(Color.BLUE);
+}
     public void paintBitmap(Bitmap bmp) {
         mBitmap = bmp;
         mCanvas = new Canvas(mBitmap);
@@ -96,15 +98,10 @@ public class DrawingView extends View {
         invalidate();
     }
 
-    public void isEraser(boolean isEraser) {
-        this.isEraser = isEraser;
-        if (isEraser) {
-            mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        } else {
-            mPaint.setXfermode(null);
-        }
-
+    public void clear() {
+        mCanvas.drawColor(ContextCompat.getColor(getContext(), R.color.main_bg));
     }
+
 
     public void setPaintXfermode() {
         mPaint.setXfermode(null);
