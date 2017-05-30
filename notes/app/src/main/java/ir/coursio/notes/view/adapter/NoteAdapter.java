@@ -77,7 +77,7 @@ public class NoteAdapter extends RecyclerView.Adapter {
             this.view = view;
             txtTitle = (TextView) view.findViewById(R.id.txtNoteTitle);
             txtText = (TextView) view.findViewById(R.id.txtNoteText);
-            imgId = (ImageView) view.findViewById(R.id.txtCancel);
+            imgId = (ImageView) view.findViewById(R.id.imgIdentifier);
         }
 
 

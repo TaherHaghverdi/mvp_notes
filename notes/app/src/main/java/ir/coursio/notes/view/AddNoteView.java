@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.support.v7.widget.Toolbar;
 
 import ir.coursio.notes.R;
+import ir.coursio.notes.presenter.AddNotePresenter;
 import ir.coursio.notes.util.TextStyleHandler;
 
 /**
@@ -26,6 +27,7 @@ import ir.coursio.notes.util.TextStyleHandler;
 public class AddNoteView extends FrameLayout implements View.OnClickListener {
 
     private EditText edtText;
+    private AddNotePresenter presenter;
 
     private enum ClickedActionItem {BOLD, ITALIC, CLEAR}
 
@@ -58,7 +60,7 @@ public class AddNoteView extends FrameLayout implements View.OnClickListener {
         save.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                ((OnSaveListener) getContext()).onSave(edtTitle.getText().toString(), edtText.getText());
+                ((OnSaveListener) presenter).onSave(edtTitle.getText().toString(), edtText.getText());
                 return false;
             }
         });
@@ -68,6 +70,10 @@ public class AddNoteView extends FrameLayout implements View.OnClickListener {
                 activity.finish();
             }
         });
+    }
+
+    public void setPresenter(AddNotePresenter presenter){
+        this.presenter = presenter;
     }
 
     @Override

@@ -15,7 +15,7 @@ import ir.coursio.notes.view.AddNoteView;
  * Project: notes
  */
 
-public class AddNoteActivity extends AppCompatActivity implements AddNoteView.OnSaveListener {
+public class AddNoteActivity extends AppCompatActivity  {
 
     AddNotePresenter presenter;
     AddNoteView view;
@@ -39,10 +39,5 @@ public class AddNoteActivity extends AppCompatActivity implements AddNoteView.On
     protected void onDestroy() {
         super.onDestroy();
         presenter.onDestroy();
-    }
-
-    @Override
-    public void onSave(String title, Editable text) {
-        presenter.onSave(title, text);
     }
 }

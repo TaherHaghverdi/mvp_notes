@@ -21,6 +21,7 @@ public class AddNotePresenter implements AddNoteView.OnSaveListener {
     }
 
     public void onCreate() {
+        view.setPresenter(this);
     }
 
     public void onDestroy() {
@@ -32,6 +33,7 @@ public class AddNotePresenter implements AddNoteView.OnSaveListener {
      * @param title user note title
      * @param text  user note text
      */
+    @Override
     public void onSave(String title, Editable text) {
         model.saveNote(title, text);
     }
