@@ -29,7 +29,6 @@
     <dimen name="add_note_utilities_img_size">48dp</dimen>
 
 
-
     <!-- Custom Fab -->
     <dimen name="fab_size_normal">56dp</dimen>
     <dimen name="fab_size_mini">40dp</dimen>
@@ -43,7 +42,9 @@
     <dimen name="fab_labels_margin">8dp</dimen>
     <dimen name="fab_standard_margin">16dp</dimen>
 
-
+    <!-- Custom Spinner -->
+    <dimen name="spinner_horizontal_margin">4dp</dimen>
+    <dimen name="spinner_vertical_margin">10dp</dimen>
 
 
 </resources>

@@ -8,6 +8,7 @@ import android.net.Uri;
 import java.io.ByteArrayOutputStream;
 
 import ir.coursio.notes.App;
+import ir.coursio.notes.R;
 import ir.coursio.notes.model.db.DataContract;
 import ir.coursio.notes.model.structures.NoteStruct;
 import ir.coursio.notes.view.custom.DrawingView;
@@ -18,6 +19,7 @@ import ir.coursio.notes.view.custom.DrawingView;
  */
 
 public class AddDrawingModel {
+
     private final Activity activity;
 
     public static final String NOTE = "note";
