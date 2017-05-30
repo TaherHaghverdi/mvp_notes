@@ -8,11 +8,14 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import java.io.ByteArrayOutputStream;
 
 import ir.coursio.notes.R;
 import ir.coursio.notes.model.structures.NoteStruct;
@@ -98,9 +101,12 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
 
     public void editMode(NoteStruct note) {
         edtTitle.setText(note.getTitle());
+        Log.i("tag", "drawing is: " + note.getDrawing().length);
+
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inMutable = true;
         Bitmap bmp = BitmapFactory.decodeByteArray(note.getDrawing(), 0, note.getDrawing().length, options);
         painting.paintBitmap(bmp);
+
     }
 }

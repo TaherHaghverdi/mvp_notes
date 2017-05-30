@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 /**
  * Created by Taher on 28/05/2017.
@@ -43,7 +44,7 @@ public class DataProvider extends ContentProvider {
         DbHelper dbHelper;
         Cursor cursor = null;
 
-         //Choose the table to query and a sort order based on the code returned for the incoming URI.
+        //Choose the table to query and a sort order based on the code returned for the incoming URI.
         switch (uriMatcher.match(uri)) {
             // If the incoming URI was for all of folders
             case FOLDERS:
@@ -99,6 +100,7 @@ public class DataProvider extends ContentProvider {
                 database.close();
                 return ContentUris.withAppendedId(uri, insertId);
             case NOTES:
+                Log.i("tag", "drawing is: " + values.getAsByteArray("note_draw").toString());
                 //insert a new note in a specific folder
                 dbHelper = new DbHelper(getContext());
                 database = dbHelper.getWritableDatabase();
