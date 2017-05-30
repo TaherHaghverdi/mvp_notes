@@ -17,5 +17,8 @@
     <color name="fab_mini_color">#8BC34A</color>
     <color name="fab_pressed_color">#f1f1f1</color>
 
+    <color name="menu_separator_color">#9E9E9E</color>
+
+
 
 </resources>
