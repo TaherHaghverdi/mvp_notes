@@ -25,7 +25,7 @@ public class DrawingView extends View {
     private Paint mPaint;
     private Canvas mCanvas;
     private Bitmap mBitmap;
-    private boolean erase = false;
+    private boolean isEraser = false;
 
 
     public DrawingView(Context context, AttributeSet attrs) {
@@ -96,9 +96,9 @@ public class DrawingView extends View {
         invalidate();
     }
 
-    public void setErase() {
-        this.erase = !erase;
-        if (erase) {
+    public void isEraser(boolean isEraser) {
+        this.isEraser = isEraser;
+        if (isEraser) {
             mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         } else {
             mPaint.setXfermode(null);

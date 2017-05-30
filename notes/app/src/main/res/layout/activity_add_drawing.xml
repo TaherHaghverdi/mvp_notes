@@ -71,6 +71,7 @@
         android:background="@color/menu_separator_color" />
 
     <ir.coursio.notes.view.custom.DrawingView
+        android:id="@+id/painting"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
