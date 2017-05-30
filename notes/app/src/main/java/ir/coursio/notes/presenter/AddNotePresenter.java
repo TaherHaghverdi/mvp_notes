@@ -1,8 +1,6 @@
 package ir.coursio.notes.presenter;
 
-import android.content.Intent;
 import android.text.Editable;
-import android.widget.Toast;
 
 import ir.coursio.notes.model.AddNoteModel;
 import ir.coursio.notes.view.AddNoteView;
