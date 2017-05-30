@@ -36,7 +36,7 @@
         android:id="@+id/txtNoteText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/menu_note_text_margin"
+        android:layout_marginLeft="@dimen/menu_note_text_margin_left"
         android:layout_marginRight="@dimen/menu_note_text_margin"
         android:ellipsize="end"
         android:maxLines="3"
