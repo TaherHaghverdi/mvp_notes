@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 /**
  * Created by Taher on 28/05/2017.
@@ -89,12 +90,16 @@ public class DataProvider extends ContentProvider {
         DbHelper dbHelper;
         switch (match) {
             case FOLDERS:
+                Log.i("tag", "adding: " + values.get(DataContract.FoldersEntry.COLUMN_FOLDER_NAME));
+                Log.i("tag", "uri: " + uri);
                 //add new folder
                 dbHelper = new DbHelper(getContext());
                 database = dbHelper.getWritableDatabase();
 
                 long insertId = database.insertWithOnConflict(DataContract.FoldersEntry.TABLE_NAME
                         , null, values, SQLiteDatabase.CONFLICT_REPLACE);
+                Log.i("tag", "insertId: " + insertId);
+
                 getContext().getContentResolver().notifyChange(uri, null);
                 database.close();
                 return ContentUris.withAppendedId(uri, insertId);

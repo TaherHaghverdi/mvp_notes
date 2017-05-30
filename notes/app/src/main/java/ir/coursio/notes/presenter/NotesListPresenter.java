@@ -52,7 +52,6 @@ public class NotesListPresenter implements NotesComponent.Presenter, LoaderManag
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         if (cursor != null) {
-            cursor.moveToFirst();
             ArrayList<NoteStruct> notes = new ArrayList<>();
             try {
                 while (cursor.moveToNext()) {

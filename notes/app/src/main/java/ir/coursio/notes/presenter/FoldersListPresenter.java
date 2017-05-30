@@ -52,7 +52,6 @@ public class FoldersListPresenter implements FoldersComponent.Presenter, LoaderM
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         if (cursor != null) {
-            cursor.moveToFirst();
             ArrayList<FolderStruct> folders = new ArrayList<>();
             try {
                 while (cursor.moveToNext()) {
