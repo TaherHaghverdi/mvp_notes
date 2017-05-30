@@ -100,7 +100,6 @@ public class DataProvider extends ContentProvider {
                 database.close();
                 return ContentUris.withAppendedId(uri, insertId);
             case NOTES:
-                Log.i("tag", "drawing is: " + values.getAsByteArray("note_draw").toString());
                 //insert a new note in a specific folder
                 dbHelper = new DbHelper(getContext());
                 database = dbHelper.getWritableDatabase();

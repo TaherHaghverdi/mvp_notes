@@ -26,7 +26,9 @@
             android:exported="false" />
 
         <activity android:name=".NoteActivity" />
-        <activity android:name=".AddNoteActivity" />
+        <activity
+            android:name=".AddNoteActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".AddDrawingActivity" />
     </application>
 
