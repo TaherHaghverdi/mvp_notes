@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import ir.coursio.notes.model.MainModel;
+import ir.coursio.notes.model.NoteModel;
 import ir.coursio.notes.presenter.MainPresenter;
 import ir.coursio.notes.view.MainView;
 import ir.coursio.notes.view.dialog.AddNewFolderDialog;
@@ -34,7 +35,7 @@ public class MainActivity extends BaseActivity implements FoldersListFragment.Li
     @Override
     public void goToFolder(String id) {
         Intent intent = new Intent(this, NoteActivity.class);
-        intent.putExtra(NoteActivity.FOLDER_ID, id);
+        intent.putExtra(NoteModel.FOLDER_ID, id);
         startActivity(intent);
 
     }
@@ -46,6 +47,11 @@ public class MainActivity extends BaseActivity implements FoldersListFragment.Li
         presenter.onDestroy();
     }
 
+    /**
+     * Save a folder in database
+     *
+     * @param name Save folder's name in database
+     */
     @Override
     public void onSaveClickListener(String name) {
         presenter.addFolderToDb(name);

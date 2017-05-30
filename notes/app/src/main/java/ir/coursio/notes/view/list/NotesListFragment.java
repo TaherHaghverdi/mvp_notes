@@ -77,7 +77,7 @@ public class NotesListFragment extends Fragment implements NotesComponent.View, 
     }
 
     /**
-     * This interface is a onNoteClickedListener to be implemented in activity to show notes to users.
+     * This interface is an onNoteClickedListener to be implemented in activity to show notes to users.
      */
     public interface OnNoteClickedListener {
         void onNoteClicked(NoteStruct note);

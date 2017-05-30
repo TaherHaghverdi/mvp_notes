@@ -1,5 +1,6 @@
 package ir.coursio.notes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -14,9 +15,7 @@ import ir.coursio.notes.view.list.NotesListFragment;
  * Project: notes
  */
 
-public class NoteActivity extends AppCompatActivity implements NotesListFragment.OnNoteClickedListener {
-
-    public static final String FOLDER_ID = "folder_id";
+public class NoteActivity extends AppCompatActivity implements NotesListFragment.OnNoteClickedListener{
 
     NoteView view;
     NotePresenter presenter;
@@ -46,4 +45,5 @@ public class NoteActivity extends AppCompatActivity implements NotesListFragment
     public void onNoteClicked(NoteStruct note) {
 
     }
+
 }

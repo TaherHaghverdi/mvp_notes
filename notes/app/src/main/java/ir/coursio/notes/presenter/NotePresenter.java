@@ -8,7 +8,7 @@ import ir.coursio.notes.view.NoteView;
  * Project: notes
  */
 
-public class NotePresenter {
+public class NotePresenter implements NoteView.OnNewNoteRequestListener {
 
     private final NoteView view;
     private final NoteModel model;
@@ -19,8 +19,15 @@ public class NotePresenter {
     }
 
     public void onCreate() {
+
+        view.setPresenter(this);
     }
 
     public void onDestroy() {
+    }
+
+    @Override
+    public void onNewNoteRequest() {
+        model.newNoteRequest();
     }
 }
