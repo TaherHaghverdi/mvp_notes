@@ -70,8 +70,7 @@ public class FolderAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     onListItemClickedListener.onRemoveClicked(mFolder.getId());
                     if (folders.size() <= 1) {
-                        folders.clear();
-                        notifyDataSetChanged();
+                        swapData(folders);
                     }
                 }
             });

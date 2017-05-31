@@ -111,8 +111,7 @@ public class NoteAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     onNoteAdapterClickListener.onNoteAdapterDelete(note.getId());
                     if (notes.size() <= 1) {
-                        notes.clear();
-                        notifyDataSetChanged();
+                        swapData(notes);
                     }
                 }
             });
