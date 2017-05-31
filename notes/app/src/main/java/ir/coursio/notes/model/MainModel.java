@@ -59,6 +59,12 @@ public class MainModel {
         return DataBackupHandler.exportDB();
     }
 
+    /**
+     * Requests to ContentProvider to delete a folder and all of it's notes.
+     *
+     * @param id The String id of deleting folder.
+     * @return int which is number of deleted rows.
+     */
     public int removeFolder(String id) {
         Uri uri = DataContract.FoldersEntry.CONTENT_URI;
         return App.getAppContext().getContentResolver().delete(uri, id, null);

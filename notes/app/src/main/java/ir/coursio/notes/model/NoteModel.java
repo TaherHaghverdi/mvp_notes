@@ -64,6 +64,12 @@ public class NoteModel {
         return activity.getIntent().getStringExtra(FOLDER_NAME);
     }
 
+    /**
+     * Requests to ContentProvider to delete a note.
+     *
+     * @param id The String id of deleting note.
+     * @return int which is number of deleted rows.
+     */
     public int removeNote(String id) {
         Uri uri = Uri.parse(DataContract.FoldersEntry.CONTENT_URI_NOTES.toString() + "/" + activity.getIntent().getStringExtra(FOLDER_ID));
         return App.getAppContext().getContentResolver().delete(uri, id, null);

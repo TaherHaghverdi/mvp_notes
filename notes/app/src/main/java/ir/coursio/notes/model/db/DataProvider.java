@@ -124,14 +124,17 @@ public class DataProvider extends ContentProvider {
         int rowsDeleted;
         switch (uriType) {
             case NOTES:
+                // Delete requested note
                 rowsDeleted = database.delete(DataContract.NoteEntry.TABLE_NAME, DataContract.FoldersEntry._ID + "=" + selection,
                         null);
                 break;
             case FOLDERS:
+                // Delete the requested folder
                 rowsDeleted = database.delete(
                         DataContract.FoldersEntry.TABLE_NAME,
                         DataContract.FoldersEntry._ID + "=" + selection,
                         null);
+                // Delete all of folder's notes
                 database.delete(
                         DataContract.NoteEntry.TABLE_NAME,
                         DataContract.NoteEntry.COLUMN_FOLDER_ID + "=" + selection,
@@ -147,7 +150,7 @@ public class DataProvider extends ContentProvider {
     }
 
     /**
-     * Only update Notes.
+     * Update notes.
      */
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
