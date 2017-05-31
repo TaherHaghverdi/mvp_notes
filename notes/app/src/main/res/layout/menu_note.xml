@@ -15,7 +15,8 @@
             android:id="@+id/imgIdentifier"
             android:layout_width="@dimen/menu_note_id_img_size"
             android:layout_height="@dimen/menu_note_id_img_size"
-            android:layout_marginLeft="@dimen/menu_note_title_margin" />
+            android:layout_marginLeft="@dimen/menu_note_title_margin"
+            android:layout_marginStart="@dimen/menu_note_title_margin" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/txtNoteTitle"
@@ -41,7 +42,7 @@
         android:layout_marginRight="@dimen/menu_note_text_margin"
         android:layout_marginStart="@dimen/menu_note_text_margin_left"
         android:ellipsize="end"
-        android:maxLines="3"
+        android:maxLines="1"
         android:minLines="1"
         android:textSize="@dimen/menu_note_text_size" />
 </LinearLayout>
