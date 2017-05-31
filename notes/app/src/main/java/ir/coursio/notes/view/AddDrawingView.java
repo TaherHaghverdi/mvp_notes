@@ -69,7 +69,7 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
         toolbar.setNavigationOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.finish();
+                activity.onBackPressed();
             }
         });
 
@@ -122,6 +122,7 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
                 painting.drawBitmap(bmp);
 
                 if (Build.VERSION.SDK_INT < 16) {
+                    //noinspection deprecation
                     mainLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                 } else {
                     mainLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);

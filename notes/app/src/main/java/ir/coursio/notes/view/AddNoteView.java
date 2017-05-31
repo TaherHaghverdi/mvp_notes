@@ -83,7 +83,7 @@ public class AddNoteView extends FrameLayout implements View.OnClickListener {
         toolbar.setNavigationOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.finish();
+                activity.onBackPressed();
             }
         });
     }

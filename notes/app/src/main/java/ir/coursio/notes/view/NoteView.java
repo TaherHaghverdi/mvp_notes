@@ -2,10 +2,12 @@ package ir.coursio.notes.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +68,14 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
 
         //Toolbar setup
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(getIcon(R.drawable.ic_arrow_back_24dp));
+        toolbar.setNavigationOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.onBackPressed();
+            }
+        });
+
     }
 
     public void setPresenter(NotePresenter presenter) {
@@ -100,5 +110,9 @@ public class NoteView extends FrameLayout implements View.OnClickListener {
 
     public void setToolbarTitle(String title) {
         toolbar.setTitle(title);
+    }
+
+    private Drawable getIcon(int id) {
+        return ContextCompat.getDrawable(getContext(), id);
     }
 }
