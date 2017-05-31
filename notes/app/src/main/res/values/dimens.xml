@@ -15,6 +15,7 @@
     <dimen name="dialog_new_folder_action_text_margin">20dp</dimen>
     <dimen name="dialog_new_folder_title_text_margin">8dp</dimen>
     <dimen name="dialog_new_folder_edt_margin">10dp</dimen>
+    <dimen name="dialog_new_folder_text_width">48dp</dimen>
 
     <!-- Notes -->
     <dimen name="menu_note_padding">8dp</dimen>

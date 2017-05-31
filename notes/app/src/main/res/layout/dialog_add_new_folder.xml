@@ -32,7 +32,7 @@
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/txtCancel"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dialog_new_folder_text_width"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dialog_new_folder_action_text_margin"
             android:layout_marginLeft="@dimen/dialog_new_folder_action_text_margin"
@@ -40,15 +40,17 @@
             android:layout_marginTop="@dimen/dialog_new_folder_action_text_margin"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:gravity="center"
             android:text="@string/dialog_btn_action_cancel" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/txtSave"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dialog_new_folder_text_width"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dialog_new_folder_action_text_margin"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:gravity="center"
             android:text="@string/dialog_btn_action_save" />
 
 
