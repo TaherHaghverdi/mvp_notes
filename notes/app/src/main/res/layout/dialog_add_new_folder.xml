@@ -51,7 +51,8 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:gravity="center"
-            android:text="@string/dialog_btn_action_save" />
+            android:text="@string/dialog_btn_action_save"
+            android:textColor="@color/colorAccent" />
 
 
     </android.support.v7.widget.LinearLayoutCompat>
