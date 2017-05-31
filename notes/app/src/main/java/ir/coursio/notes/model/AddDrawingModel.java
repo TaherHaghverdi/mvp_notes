@@ -2,13 +2,10 @@ package ir.coursio.notes.model;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.graphics.Bitmap;
 import android.net.Uri;
 
-import java.io.ByteArrayOutputStream;
 
 import ir.coursio.notes.App;
-import ir.coursio.notes.R;
 import ir.coursio.notes.model.db.DataContract;
 import ir.coursio.notes.model.structures.NoteStruct;
 import ir.coursio.notes.view.custom.DrawingView;
@@ -22,9 +19,9 @@ public class AddDrawingModel {
 
     private final Activity activity;
 
-    public static final String NOTE = "note";
-    public static final String FOLDER_ID = "folder_id";
-    public static final String IS_EDITING = "is_editing";
+     static final String NOTE = "note";
+     static final String FOLDER_ID = "folder_id";
+     static final String IS_EDITING = "is_editing";
 
     public AddDrawingModel(Activity activity) {
         this.activity = activity;
