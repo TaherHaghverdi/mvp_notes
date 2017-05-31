@@ -19,4 +19,8 @@
 
     <string name="import_db">Import Database</string>
     <string name="export_db">Export Database</string>
+    <string name="export_db_success">Saved backups successfully :)</string>
+    <string name="export_db_fail">Export Failed :(</string>
+    <string name="import_db_success">Data backed up successfully :)</string>
+    <string name="import_db_fail">Import Failed :(</string>
 </resources>

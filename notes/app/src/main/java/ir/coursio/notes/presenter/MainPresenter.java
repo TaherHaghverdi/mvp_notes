@@ -32,8 +32,8 @@ public class MainPresenter {
         model.getImportPath();
     }
 
-    public void exportDatabase() {
-        model.exportDatabase();
+    public String exportDatabase() {
+       return model.exportDatabase();
     }
 
 }

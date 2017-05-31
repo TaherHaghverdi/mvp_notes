@@ -38,14 +38,13 @@ public class MainModel {
         activity.startActivityForResult(intent, 1);
     }
 
-    public void importDatabase(String path){
-        DataBackupHandler.importDb(path,activity);
-
-    }
-    public void exportDatabase() {
-        DataBackupHandler.exportDB();
+    public String importDatabase(String path) {
+        return DataBackupHandler.importDb(path, activity);
     }
 
+    public String exportDatabase() {
+        return DataBackupHandler.exportDB();
+    }
 
 
 }

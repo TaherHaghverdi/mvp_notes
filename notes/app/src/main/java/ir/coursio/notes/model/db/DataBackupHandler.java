@@ -2,7 +2,6 @@ package ir.coursio.notes.model.db;
 
 import android.app.Activity;
 import android.os.Environment;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +10,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 
 import ir.coursio.notes.App;
+import ir.coursio.notes.R;
 
 /**
  * Created by Taher on 31/05/2017.
@@ -21,11 +21,13 @@ public class DataBackupHandler {
 
     /**
      * This method exports database to external storage
+     *
+     * @return String success or failed message.
      */
-    public static void exportDB() {
+    public static String exportDB() {
         File sd = Environment.getExternalStorageDirectory();
-        FileChannel source ;
-        FileChannel destination ;
+        FileChannel source;
+        FileChannel destination;
         String backupDBPath = "notes_backup";
         File currentDbFile = App.getAppContext().getDatabasePath(DbHelper.DATABASE_NAME);
         File backupDbFile = new File(sd, backupDBPath);
@@ -35,10 +37,10 @@ public class DataBackupHandler {
             destination.transferFrom(source, 0, source.size());
             source.close();
             destination.close();
-            Toast.makeText(App.getAppContext(), "Saved backups successfully :)", Toast.LENGTH_LONG).show();
+            return App.getAppContext().getString(R.string.export_db_success);
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(App.getAppContext(), "Export Failed :(", Toast.LENGTH_LONG).show();
+            return App.getAppContext().getString(R.string.export_db_fail);
         }
 
     }
@@ -46,10 +48,11 @@ public class DataBackupHandler {
     /**
      * Import backed up data into application.
      *
-     * @param path     Where database is saved
-     * @param activity Instance of current activity that will be reset after importing database
+     * @param path     Where database is saved.
+     * @param activity Instance of current activity that will be reset after importing database.
+     * @return String success or failed message.
      */
-    public static void importDb(String path, Activity activity) {
+    public static String importDb(String path, Activity activity) {
         try {
             File sd = Environment.getExternalStorageDirectory();
             if (sd.canWrite()) {
@@ -61,10 +64,12 @@ public class DataBackupHandler {
                 src.close();
                 dst.close();
                 activity.recreate();
+                return App.getAppContext().getString(R.string.import_db_success);
             }
         } catch (Exception e) {
-            Toast.makeText(App.getAppContext(), "Import Failed :(", Toast.LENGTH_LONG).show();
             e.printStackTrace();
+            return App.getAppContext().getString(R.string.import_db_fail);
         }
+        return App.getAppContext().getString(R.string.import_db_fail);
     }
 }

@@ -17,11 +17,13 @@ import ir.coursio.notes.model.structures.NoteStruct;
  */
 
 public class AddNoteModel {
+
     private final Activity activity;
+
     // Static strings to identify intent extras
-    public static final String NOTE = "note";
-    public static final String FOLDER_ID = "folder_id";
-    public static final String IS_EDITING = "is_editing";
+    static final String NOTE = "note";
+    static final String FOLDER_ID = "folder_id";
+    static final String IS_EDITING = "is_editing";
 
 
     public AddNoteModel(Activity activity) {
@@ -53,10 +55,20 @@ public class AddNoteModel {
         activity.finish();
     }
 
+    /**
+     * Get data from NoteActivity that tells user behaviour.
+     *
+     * @return Whether user making a new note or editing an existing one.
+     */
     public boolean isInEditMode() {
         return activity.getIntent().getBooleanExtra(IS_EDITING, false);
     }
 
+    /**
+     * When user is editing an existing note we need to fetch user old data and prepare them to edit.
+     *
+     * @return NoteStruct containing user old inputs.
+     */
     public NoteStruct getExtraNote() {
         return activity.getIntent().getParcelableExtra(NOTE);
     }

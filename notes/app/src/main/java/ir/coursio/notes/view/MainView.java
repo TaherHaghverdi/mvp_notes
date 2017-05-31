@@ -51,7 +51,7 @@ public class MainView extends FrameLayout implements View.OnClickListener {
         if (foldersListFragment == null) {
             foldersListFragment = new FoldersListFragment();
             fragmentManager.beginTransaction()
-                    .add(R.id.mainLayout, foldersListFragment, "CategoryFragment").commitAllowingStateLoss();
+                    .add(R.id.mainLayout, foldersListFragment, "FoldersListFragment").commitAllowingStateLoss();
         }
         new FoldersListPresenter(foldersListFragment, loaderManager);
 
@@ -104,7 +104,7 @@ public class MainView extends FrameLayout implements View.OnClickListener {
                             presenter.importDatabase();
                             break;
                         case R.id.export_db:
-                            presenter.exportDatabase();
+                            showMessage(presenter.exportDatabase());
                             break;
 
                     }

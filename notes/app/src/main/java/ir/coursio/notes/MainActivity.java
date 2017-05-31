@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity implements FoldersListFragment.On
         switch (requestCode) {
             case 1:
                 if (resultCode == Activity.RESULT_OK) {
-                    model.importDatabase(data.getData().getPath());
+                    view.showMessage(model.importDatabase(data.getData().getPath()));
                 }
                 break;
         }
