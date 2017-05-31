@@ -1,7 +1,6 @@
 package ir.coursio.notes.model.db;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Environment;
 import android.widget.Toast;
 
@@ -21,12 +20,12 @@ import ir.coursio.notes.App;
 public class DataBackupHandler {
 
     /**
-     * Export db to external storage
+     * This method exports database to external storage
      */
     public static void exportDB() {
         File sd = Environment.getExternalStorageDirectory();
-        FileChannel source = null;
-        FileChannel destination = null;
+        FileChannel source ;
+        FileChannel destination ;
         String backupDBPath = "notes_backup";
         File currentDbFile = App.getAppContext().getDatabasePath(DbHelper.DATABASE_NAME);
         File backupDbFile = new File(sd, backupDBPath);
@@ -36,7 +35,6 @@ public class DataBackupHandler {
             destination.transferFrom(source, 0, source.size());
             source.close();
             destination.close();
-
             Toast.makeText(App.getAppContext(), "Saved backups successfully :)", Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,7 +44,7 @@ public class DataBackupHandler {
     }
 
     /**
-     * Import data from external storage
+     * Import backed up data into application.
      *
      * @param path     Where database is saved
      * @param activity Instance of current activity that will be reset after importing database
@@ -57,13 +55,11 @@ public class DataBackupHandler {
             if (sd.canWrite()) {
                 File backupDB = new File(path);
                 File currentDB = App.getAppContext().getDatabasePath(DbHelper.DATABASE_NAME);
-
                 FileChannel src = new FileInputStream(backupDB).getChannel();
                 FileChannel dst = new FileOutputStream(currentDB).getChannel();
                 dst.transferFrom(src, 0, src.size());
                 src.close();
                 dst.close();
-
                 activity.recreate();
             }
         } catch (Exception e) {
