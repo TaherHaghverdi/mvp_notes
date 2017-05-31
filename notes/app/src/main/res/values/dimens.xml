@@ -33,6 +33,8 @@
     <dimen name="menu_bg_radius">2dp</dimen>
     <dimen name="menu_elevation">1dp</dimen>
     <dimen name="menu_margin">4dp</dimen>
+    <dimen name="menu_delete_item_size">48dp</dimen>
+
 
     <!-- Custom Fab -->
     <dimen name="fab_size_normal">56dp</dimen>

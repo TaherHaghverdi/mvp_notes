@@ -11,7 +11,7 @@ import ir.coursio.notes.view.MainView;
 import ir.coursio.notes.view.dialog.AddNewFolderDialog;
 import ir.coursio.notes.view.list.FoldersListFragment;
 
-public class MainActivity extends PermissionActivity implements FoldersListFragment.OnFolderClickedListener, AddNewFolderDialog.OnSaveClickListener {
+public class MainActivity extends PermissionActivity implements FoldersListFragment.OnListItemClickedListener, AddNewFolderDialog.OnSaveClickListener {
 
     MainView view;
     MainModel model;
@@ -40,6 +40,11 @@ public class MainActivity extends PermissionActivity implements FoldersListFragm
         intent.putExtra(NoteModel.FOLDER_NAME, name);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onRemoveClicked(String id) {
+        model.removeFolder(id);
     }
 
 

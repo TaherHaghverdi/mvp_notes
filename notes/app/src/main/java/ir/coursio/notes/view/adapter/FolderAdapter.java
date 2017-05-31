@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,13 +18,13 @@ import ir.coursio.notes.model.structures.FolderStruct;
  */
 
 public class FolderAdapter extends RecyclerView.Adapter {
-    //Custom onFolderClickedListener to handle each item click
-    private onFolderClickedListener onFolderClickedListener;
+    //Custom onListItemClickedListener to handle each item click
+    private onListItemClickedListener onListItemClickedListener;
     //list of user's folders
     private ArrayList<FolderStruct> folders;
 
-    public FolderAdapter(onFolderClickedListener onFolderClickedListener, ArrayList<FolderStruct> folders) {
-        this.onFolderClickedListener = onFolderClickedListener;
+    public FolderAdapter(onListItemClickedListener onListItemClickedListener, ArrayList<FolderStruct> folders) {
+        this.onListItemClickedListener = onListItemClickedListener;
         this.folders = folders;
     }
 
@@ -46,12 +47,14 @@ public class FolderAdapter extends RecyclerView.Adapter {
      */
     private class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtFolderName;
+        private ImageView imgDelete;
         private View view;
 
         ViewHolder(View view) {
             super(view);
             this.view = view;
             txtFolderName = (TextView) view.findViewById(R.id.txtFolderName);
+            imgDelete = (ImageView) view.findViewById(R.id.imgDelete);
         }
 
         void bindView(final FolderStruct mFolder) {
@@ -59,7 +62,17 @@ public class FolderAdapter extends RecyclerView.Adapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onFolderClickedListener.onFolderClicked(mFolder.getId(), mFolder.getName());
+                    onListItemClickedListener.onFolderClicked(mFolder.getId(), mFolder.getName());
+                }
+            });
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onListItemClickedListener.onRemoveClicked(mFolder.getId());
+                    if (folders.size() <= 1) {
+                        folders.clear();
+                        notifyDataSetChanged();
+                    }
                 }
             });
 
@@ -75,8 +88,10 @@ public class FolderAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public interface onFolderClickedListener {
+    public interface onListItemClickedListener {
         void onFolderClicked(String id, String name);
+
+        void onRemoveClicked(String id);
     }
 
     /**

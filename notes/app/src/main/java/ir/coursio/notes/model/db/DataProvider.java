@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 
 /**
  * Created by Taher on 28/05/2017.
@@ -120,26 +121,17 @@ public class DataProvider extends ContentProvider {
         int uriType = uriMatcher.match(uri);
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase database = dbHelper.getWritableDatabase();
-        int rowsDeleted = 0;
+        int rowsDeleted;
         switch (uriType) {
             case NOTES:
                 rowsDeleted = database.delete(DataContract.NoteEntry.TABLE_NAME, selection,
                         selectionArgs);
                 break;
             case FOLDERS:
-                String id = uri.getLastPathSegment();
-                if (TextUtils.isEmpty(selection)) {
-                    rowsDeleted = database.delete(
-                            DataContract.NoteEntry.TABLE_NAME,
-                            DataContract.NoteEntry.COLUMN_FOLDER_ID + "=" + id,
-                            null);
-                } else {
-                    rowsDeleted = database.delete(
-                            DataContract.NoteEntry.TABLE_NAME,
-                            DataContract.NoteEntry.COLUMN_FOLDER_ID + "=" + id
-                                    + " and " + selection,
-                            selectionArgs);
-                }
+                rowsDeleted = database.delete(
+                        DataContract.FoldersEntry.TABLE_NAME,
+                        DataContract.FoldersEntry._ID + "=" + selection,
+                        null);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);

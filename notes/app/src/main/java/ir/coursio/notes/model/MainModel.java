@@ -3,6 +3,7 @@ package ir.coursio.notes.model;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 
 
 import ir.coursio.notes.App;
@@ -58,5 +59,9 @@ public class MainModel {
         return DataBackupHandler.exportDB();
     }
 
+    public int removeFolder(String id) {
+        Uri uri = DataContract.FoldersEntry.CONTENT_URI;
+        return App.getAppContext().getContentResolver().delete(uri, id, null);
+    }
 
 }

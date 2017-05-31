@@ -21,7 +21,7 @@ import ir.coursio.notes.view.adapter.FolderAdapter;
  * Project: notes
  */
 
-public class FoldersListFragment extends Fragment implements FoldersComponent.View, FolderAdapter.onFolderClickedListener {
+public class FoldersListFragment extends Fragment implements FoldersComponent.View, FolderAdapter.onListItemClickedListener {
 
     private FoldersComponent.Presenter presenter;
     private FolderAdapter adapter;
@@ -71,10 +71,17 @@ public class FoldersListFragment extends Fragment implements FoldersComponent.Vi
      */
     @Override
     public void onFolderClicked(String id, String name) {
-        ((OnFolderClickedListener) getContext()).onFolderClicked(id, name);
+        ((OnListItemClickedListener) getContext()).onFolderClicked(id, name);
     }
 
-    public interface OnFolderClickedListener {
+    @Override
+    public void onRemoveClicked(String id) {
+        ((OnListItemClickedListener) getContext()).onRemoveClicked(id);
+    }
+
+    public interface OnListItemClickedListener {
         void onFolderClicked(String id, String name);
+
+        void onRemoveClicked(String id);
     }
 }
