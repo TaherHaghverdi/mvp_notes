@@ -14,7 +14,7 @@ import ir.coursio.notes.view.list.NotesListFragment;
  * Project: notes
  */
 
-public class NoteActivity extends AppCompatActivity implements NotesListFragment.OnNoteClickedListener {
+public class NoteActivity extends AppCompatActivity implements NotesListFragment.OnNoteClickListener {
     NoteView view;
     NotePresenter presenter;
     NoteModel model;
@@ -40,8 +40,13 @@ public class NoteActivity extends AppCompatActivity implements NotesListFragment
     }
 
     @Override
-    public void onNoteClicked(NoteStruct note) {
+    public void onNoteClick(NoteStruct note) {
         model.editNoteRequest(note);
+    }
+
+    @Override
+    public void onNoteDelete(String id) {
+        model.removeNote(id);
     }
 
 }

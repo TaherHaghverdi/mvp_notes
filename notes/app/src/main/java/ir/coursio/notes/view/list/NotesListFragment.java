@@ -21,7 +21,7 @@ import ir.coursio.notes.view.adapter.NoteAdapter;
  * Project: notes
  */
 
-public class NotesListFragment extends Fragment implements NotesComponent.View, NoteAdapter.OnNoteAdapterClickedListener {
+public class NotesListFragment extends Fragment implements NotesComponent.View, NoteAdapter.OnNoteAdapterClickListener {
 
     private NotesComponent.Presenter presenter;
     private NoteAdapter adapter;
@@ -71,14 +71,21 @@ public class NotesListFragment extends Fragment implements NotesComponent.View, 
      * @param note the specific note that was selected
      */
     @Override
-    public void onNoteAdapterClicked(NoteStruct note) {
-        ((OnNoteClickedListener) getContext()).onNoteClicked(note);
+    public void onNoteAdapterClick(NoteStruct note) {
+        ((OnNoteClickListener) getContext()).onNoteClick(note);
+    }
+
+    @Override
+    public void onNoteAdapterDelete(String id) {
+        ((OnNoteClickListener) getContext()).onNoteDelete(id);
     }
 
     /**
      * This interface is an onNoteClickedListener to be implemented in activity to show notes to users.
      */
-    public interface OnNoteClickedListener {
-        void onNoteClicked(NoteStruct note);
+    public interface OnNoteClickListener {
+        void onNoteClick(NoteStruct note);
+
+        void onNoteDelete(String id);
     }
 }

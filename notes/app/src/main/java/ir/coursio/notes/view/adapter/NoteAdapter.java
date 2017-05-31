@@ -25,13 +25,13 @@ public class NoteAdapter extends RecyclerView.Adapter {
     private Context context;
     //list of user's notes
     private ArrayList<NoteStruct> notes;
-    private OnNoteAdapterClickedListener onNoteAdapterClickedListener;
+    private OnNoteAdapterClickListener onNoteAdapterClickListener;
 
 
-    public NoteAdapter(Context context, ArrayList<NoteStruct> notes, OnNoteAdapterClickedListener onNoteAdapterClickedListener) {
+    public NoteAdapter(Context context, ArrayList<NoteStruct> notes, OnNoteAdapterClickListener onNoteAdapterClickListener) {
         this.context = context;
         this.notes = notes;
-        this.onNoteAdapterClickedListener = onNoteAdapterClickedListener;
+        this.onNoteAdapterClickListener = onNoteAdapterClickListener;
     }
 
 
@@ -58,8 +58,10 @@ public class NoteAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public interface OnNoteAdapterClickedListener {
-        void onNoteAdapterClicked(NoteStruct note);
+    public interface OnNoteAdapterClickListener {
+        void onNoteAdapterClick(NoteStruct note);
+
+        void onNoteAdapterDelete(String id);
     }
 
 
@@ -74,7 +76,7 @@ public class NoteAdapter extends RecyclerView.Adapter {
      */
     private class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtTitle, txtText;
-        private ImageView imgId;
+        private ImageView imgId, imgDelete;
         private View view;
 
         ViewHolder(View view) {
@@ -83,6 +85,7 @@ public class NoteAdapter extends RecyclerView.Adapter {
             txtTitle = (TextView) view.findViewById(R.id.txtNoteTitle);
             txtText = (TextView) view.findViewById(R.id.txtNoteText);
             imgId = (ImageView) view.findViewById(R.id.imgIdentifier);
+            imgDelete = (ImageView) view.findViewById(R.id.imgDelete);
         }
 
 
@@ -103,11 +106,20 @@ public class NoteAdapter extends RecyclerView.Adapter {
                 txtText.setVisibility(View.GONE);
             }
 
-
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onNoteAdapterClickListener.onNoteAdapterDelete(note.getId());
+                    if (notes.size() <= 1) {
+                        notes.clear();
+                        notifyDataSetChanged();
+                    }
+                }
+            });
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onNoteAdapterClickedListener.onNoteAdapterClicked(note);
+                    onNoteAdapterClickListener.onNoteAdapterClick(note);
                 }
             });
         }

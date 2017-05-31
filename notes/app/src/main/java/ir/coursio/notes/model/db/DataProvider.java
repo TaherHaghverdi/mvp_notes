@@ -124,14 +124,19 @@ public class DataProvider extends ContentProvider {
         int rowsDeleted;
         switch (uriType) {
             case NOTES:
-                rowsDeleted = database.delete(DataContract.NoteEntry.TABLE_NAME, selection,
-                        selectionArgs);
+                rowsDeleted = database.delete(DataContract.NoteEntry.TABLE_NAME, DataContract.FoldersEntry._ID + "=" + selection,
+                        null);
                 break;
             case FOLDERS:
                 rowsDeleted = database.delete(
                         DataContract.FoldersEntry.TABLE_NAME,
                         DataContract.FoldersEntry._ID + "=" + selection,
                         null);
+                database.delete(
+                        DataContract.NoteEntry.TABLE_NAME,
+                        DataContract.NoteEntry.COLUMN_FOLDER_ID + "=" + selection,
+                        null);
+
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);

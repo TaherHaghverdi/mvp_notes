@@ -2,9 +2,13 @@ package ir.coursio.notes.model;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 
 import ir.coursio.notes.AddDrawingActivity;
 import ir.coursio.notes.AddNoteActivity;
+import ir.coursio.notes.App;
+import ir.coursio.notes.model.db.DataContract;
 import ir.coursio.notes.model.structures.NoteStruct;
 
 /**
@@ -58,5 +62,11 @@ public class NoteModel {
      */
     public String getFolderName() {
         return activity.getIntent().getStringExtra(FOLDER_NAME);
+    }
+
+    public int removeNote(String id) {
+        Uri uri = Uri.parse(DataContract.FoldersEntry.CONTENT_URI_NOTES.toString() + "/" + activity.getIntent().getStringExtra(FOLDER_ID));
+        return App.getAppContext().getContentResolver().delete(uri, id, null);
+
     }
 }
