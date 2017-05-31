@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 /**
  * Created by Taher on 28/05/2017.
@@ -41,7 +42,7 @@ public class DataProvider extends ContentProvider {
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
         SQLiteDatabase database;
         DbHelper dbHelper;
-        Cursor cursor = null;
+        Cursor cursor;
 
         //Choose the table to query and a sort order based on the code returned for the incoming URI.
         switch (uriMatcher.match(uri)) {
@@ -70,24 +71,24 @@ public class DataProvider extends ContentProvider {
     @Nullable
     @Override
     public String getType(@NonNull Uri uri) {
-        final int match = uriMatcher.match(uri);
-        switch (match) {
+        final int uriType = uriMatcher.match(uri);
+        switch (uriType) {
             case FOLDERS:
                 return DataContract.FoldersEntry.CONTENT_LIST_TYPE;
             case NOTES:
                 return DataContract.FoldersEntry.CONTENT_LIST_TYPE;
             default:
-                throw new IllegalStateException("IllegalStateException for match: " + match);
+                throw new IllegalStateException("IllegalStateException for uriType: " + uriType);
         }
     }
 
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-        final int match = uriMatcher.match(uri);
+        final int uriType = uriMatcher.match(uri);
         SQLiteDatabase database;
         DbHelper dbHelper;
-        switch (match) {
+        switch (uriType) {
             case FOLDERS:
                 //add new folder
                 dbHelper = new DbHelper(getContext());
@@ -116,7 +117,36 @@ public class DataProvider extends ContentProvider {
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+        int uriType = uriMatcher.match(uri);
+        DbHelper dbHelper = new DbHelper(getContext());
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+        int rowsDeleted = 0;
+        switch (uriType) {
+            case NOTES:
+                rowsDeleted = database.delete(DataContract.NoteEntry.TABLE_NAME, selection,
+                        selectionArgs);
+                break;
+            case FOLDERS:
+                String id = uri.getLastPathSegment();
+                if (TextUtils.isEmpty(selection)) {
+                    rowsDeleted = database.delete(
+                            DataContract.NoteEntry.TABLE_NAME,
+                            DataContract.NoteEntry.COLUMN_FOLDER_ID + "=" + id,
+                            null);
+                } else {
+                    rowsDeleted = database.delete(
+                            DataContract.NoteEntry.TABLE_NAME,
+                            DataContract.NoteEntry.COLUMN_FOLDER_ID + "=" + id
+                                    + " and " + selection,
+                            selectionArgs);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI: " + uri);
+        }
+        getContext().getContentResolver().notifyChange(uri, null);
+        return rowsDeleted;
+
     }
 
     /**
@@ -124,10 +154,10 @@ public class DataProvider extends ContentProvider {
      */
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-        final int match = uriMatcher.match(uri);
+        final int uriType = uriMatcher.match(uri);
         SQLiteDatabase database;
         DbHelper dbHelper;
-        switch (match) {
+        switch (uriType) {
             case NOTES:
                 dbHelper = new DbHelper(getContext());
                 database = dbHelper.getWritableDatabase();
