@@ -9,20 +9,24 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 
 import ir.coursio.notes.R;
 import ir.coursio.notes.model.structures.NoteStruct;
 import ir.coursio.notes.presenter.AddDrawingPresenter;
+import ir.coursio.notes.util.Colors;
+import ir.coursio.notes.view.custom.ColorSpinnerAdapter;
 import ir.coursio.notes.view.custom.DrawingView;
 
 /**
@@ -37,8 +41,6 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
     private EditText edtTitle;
     private LinearLayout mainLayout;
 
-    private enum ClickedActionItem {ERASER, CLEAR}
-
     public AddDrawingView(@NonNull final Activity activity) {
         super(activity);
         View view = inflate(getContext(), R.layout.activity_add_drawing, this);
@@ -48,12 +50,8 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
         mainLayout = (LinearLayout) view.findViewById(R.id.mainLayout);
 
         // Action item click listeners setup
-        ImageView imgEraser = (ImageView) view.findViewById(R.id.imgEraser);
         ImageView imgClear = (ImageView) view.findViewById(R.id.imgClear);
-        imgEraser.setOnClickListener(this);
         imgClear.setOnClickListener(this);
-        imgEraser.setTag(ClickedActionItem.ERASER);
-        imgClear.setTag(ClickedActionItem.CLEAR);
 
 
         // Toolbar Setup
@@ -76,6 +74,13 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
             }
         });
 
+        //Set custom spinner to choose color
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+        ColorSpinnerAdapter colorSpinnerAdapter = new ColorSpinnerAdapter(getContext(),
+                ColorSpinnerAdapter.colorDrawables, ColorSpinnerAdapter.colorNames);
+        spinner.setAdapter(colorSpinnerAdapter);
+        spinner.setOnItemSelectedListener(spinnerListener);
+
     }
 
     public void setPresenter(AddDrawingPresenter presenter) {
@@ -93,15 +98,7 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-
-        switch ((ClickedActionItem) v.getTag()) {
-            case CLEAR:
-                painting.clear();
-                break;
-            case ERASER:
-                painting.changeColor();
-                break;
-        }
+        painting.clear();
     }
 
     public void editMode(final NoteStruct note) {
@@ -122,7 +119,17 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
                 }
             }
         });
-
-
     }
+
+    AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            painting.changeColor(position);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+            painting.changeColor(Colors.BLACK);
+        }
+    };
 }

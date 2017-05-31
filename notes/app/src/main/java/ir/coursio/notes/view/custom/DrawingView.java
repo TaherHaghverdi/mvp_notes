@@ -17,6 +17,7 @@ import android.view.View;
 import java.io.ByteArrayOutputStream;
 
 import ir.coursio.notes.R;
+import ir.coursio.notes.util.Colors;
 
 /**
  * Created by Taher on 30/05/2017.
@@ -87,8 +88,18 @@ public class DrawingView extends View {
         return true;
     }
 
-    public void changeColor() {
-        mPaint.setColor(Color.BLUE);
+    public void changeColor(int color) {
+        switch (color){
+            case Colors.BLACK:
+                mPaint.setColor(Color.BLACK);
+                break;
+            case Colors.RED:
+                mPaint.setColor(Color.RED);
+                break;
+            case Colors.GREEN:
+                mPaint.setColor(Color.GREEN);
+                break;
+        }
     }
 
     public void paintBitmap(Bitmap bmp) {
