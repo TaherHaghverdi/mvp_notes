@@ -28,6 +28,10 @@
     <dimen name="add_note_side_action_margin">8dp</dimen>
     <dimen name="add_note_utilities_img_size">48dp</dimen>
 
+    <!-- Menu -->
+    <dimen name="menu_bg_radius">2dp</dimen>
+    <dimen name="menu_elevation">1dp</dimen>
+    <dimen name="menu_margin">4dp</dimen>
 
     <!-- Custom Fab -->
     <dimen name="fab_size_normal">56dp</dimen>

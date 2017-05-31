@@ -3,5 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recyclerView"
     android:layout_width="match_parent"
-    tools:listitem="@layout/menu_note"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:padding="@dimen/menu_margin"
+    tools:listitem="@layout/menu_note" />

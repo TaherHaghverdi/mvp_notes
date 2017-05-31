@@ -18,8 +18,10 @@
     <color name="fab_mini_color">#8BC34A</color>
     <color name="fab_pressed_color">#f1f1f1</color>
 
+    <!-- Menu -->
     <color name="menu_separator_color">#9E9E9E</color>
-
+    <color name="menu_bg">#fff</color>
+    <color name="menu_item_ripple_effect">#E0E0E0</color>
 
 
 </resources>

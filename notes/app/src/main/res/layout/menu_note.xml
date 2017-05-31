@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="start"
+    android:layout_margin="@dimen/menu_margin"
+    android:background="@drawable/menu_element_radius"
+    android:clickable="true"
+    android:elevation="@dimen/menu_elevation"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:gravity="start|center"
     android:orientation="vertical"
-    android:padding="@dimen/menu_note_padding">
+    android:padding="@dimen/menu_note_padding"
+    tools:targetApi="lollipop">
 
     <LinearLayout
         android:layout_width="match_parent"
