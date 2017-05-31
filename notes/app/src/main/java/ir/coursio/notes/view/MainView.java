@@ -29,7 +29,6 @@ import ir.coursio.notes.view.list.FoldersListFragment;
 
 @SuppressLint("ViewConstructor")
 public class MainView extends FrameLayout implements View.OnClickListener {
-
     ViewGroup mainLayout;
     FragmentManager fragmentManager;
     MainPresenter presenter;
@@ -62,6 +61,11 @@ public class MainView extends FrameLayout implements View.OnClickListener {
         toolbar.getMenu().findItem(R.id.import_db).setOnMenuItemClickListener(onMenuItemClickListener);
     }
 
+    /**
+     * Show a message to user using Snackbar.
+     *
+     * @param message The String message to show to user.
+     */
     public void showMessage(String message) {
         Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show();
     }

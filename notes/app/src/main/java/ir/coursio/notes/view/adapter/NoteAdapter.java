@@ -23,6 +23,7 @@ import ir.coursio.notes.model.structures.NoteStruct;
 
 public class NoteAdapter extends RecyclerView.Adapter {
     private Context context;
+    //list of user's notes
     private ArrayList<NoteStruct> notes;
     private OnNoteAdapterClickedListener onNoteAdapterClickedListener;
 
@@ -68,12 +69,15 @@ public class NoteAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * ViewHolder class stores data that makes binding view contents  easier
+     */
     private class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtTitle, txtText;
         private ImageView imgId;
         private View view;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             this.view = view;
             txtTitle = (TextView) view.findViewById(R.id.txtNoteTitle);
@@ -82,14 +86,15 @@ public class NoteAdapter extends RecyclerView.Adapter {
         }
 
 
-        public void bindView(final NoteStruct note) {
+        void bindView(final NoteStruct note) {
             txtTitle.setText(note.getTitle());
 
             if (note.getDrawing() == null) {
                 setImageDrawable(R.drawable.ic_note_24dp, imgId);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     txtText.setText(Html.fromHtml(note.getText(), Html.FROM_HTML_MODE_COMPACT));
-                }else{
+                } else {
+                    //noinspection deprecation
                     txtText.setText(Html.fromHtml(note.getText()));
                 }
 

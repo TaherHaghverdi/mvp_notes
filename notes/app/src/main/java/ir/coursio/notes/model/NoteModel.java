@@ -13,6 +13,7 @@ import ir.coursio.notes.model.structures.NoteStruct;
  */
 
 public class NoteModel {
+    // Static strings to identify intent extras
     public static final String FOLDER_ID = "folder_id";
     public static final String FOLDER_NAME = "folder_name";
 
@@ -50,6 +51,11 @@ public class NoteModel {
         }
     }
 
+    /**
+     * Gets current folder's name.
+     *
+     * @return The String folder's name
+     */
     public String getFolderName() {
         return activity.getIntent().getStringExtra(FOLDER_NAME);
     }

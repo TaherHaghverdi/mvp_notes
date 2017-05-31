@@ -26,6 +26,12 @@ public class FoldersListPresenter implements FoldersComponent.Presenter, LoaderM
     //view
     private FoldersComponent.View view;
 
+    /**
+     * Class default constructor
+     *
+     * @param view          The {@link FoldersComponent.View} to provide presenter and updates folders list.
+     * @param loaderManager The LoaderManager to fetch data from database.
+     */
     public FoldersListPresenter(FoldersComponent.View view, LoaderManager loaderManager) {
         this.view = view;
         this.loaderManager = loaderManager;
@@ -38,9 +44,10 @@ public class FoldersListPresenter implements FoldersComponent.Presenter, LoaderM
     }
 
     @Override
-    public Loader onCreateLoader(int id, Bundle args) {
-        // create new cursor loader from db to load folders
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        //Instantiate and return a new Loader for the given ID
         String[] projection = {"*"};
+        //Return a new Loader instance that is ready to start loading
         return new CursorLoader(App.getAppContext(),
                 DataContract.FoldersEntry.CONTENT_URI,
                 projection,
@@ -51,6 +58,8 @@ public class FoldersListPresenter implements FoldersComponent.Presenter, LoaderM
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        // Cursor contains data loaded by loader
+        // We fetch data from cursor and pass it to view to update folders list
         if (cursor != null) {
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();

@@ -2,7 +2,6 @@ package ir.coursio.notes;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import ir.coursio.notes.model.MainModel;
@@ -12,7 +11,7 @@ import ir.coursio.notes.view.MainView;
 import ir.coursio.notes.view.dialog.AddNewFolderDialog;
 import ir.coursio.notes.view.list.FoldersListFragment;
 
-public class MainActivity extends BaseActivity implements FoldersListFragment.OnFolderClickedListener, AddNewFolderDialog.Listener {
+public class MainActivity extends PermissionActivity implements FoldersListFragment.OnFolderClickedListener, AddNewFolderDialog.OnSaveClickListener {
 
     MainView view;
     MainModel model;
@@ -56,7 +55,7 @@ public class MainActivity extends BaseActivity implements FoldersListFragment.On
      * @param name Save folder's name in database
      */
     @Override
-    public void onSaveClickListener(String name) {
+    public void onSaveClick(String name) {
         presenter.addFolderToDb(name);
     }
 

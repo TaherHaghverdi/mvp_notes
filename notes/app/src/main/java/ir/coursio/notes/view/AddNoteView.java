@@ -30,7 +30,7 @@ import ir.coursio.notes.util.TextStyleHandler;
 
 @SuppressLint("ViewConstructor")
 public class AddNoteView extends FrameLayout implements View.OnClickListener {
-
+    //Note title and text EditText
     private EditText edtText, edtTitle;
     private AddNotePresenter presenter;
     private ViewGroup mainLayout;
@@ -125,6 +125,11 @@ public class AddNoteView extends FrameLayout implements View.OnClickListener {
         }
     }
 
+    /**
+     * Show a message to user using Snackbar.
+     *
+     * @param message The String message to show to user.
+     */
     private void showMessage(String message) {
         Snackbar.make(mainLayout, message, Snackbar.LENGTH_LONG).show();
     }

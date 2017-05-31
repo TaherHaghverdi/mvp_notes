@@ -19,7 +19,6 @@ import android.util.Log;
 
 public class PermissionHandler {
 
-
     private BroadcastReceiver permissionReceiver;
     private OnPermissionResponse listener;
     private Activity activity;

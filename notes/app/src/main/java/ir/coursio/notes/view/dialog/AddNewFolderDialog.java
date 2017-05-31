@@ -34,7 +34,7 @@ public class AddNewFolderDialog extends DialogFragment {
             public void onClick(View view) {
 
                 if (edtFolderName.getText().toString().length() > 0) {
-                    ((Listener) getContext()).onSaveClickListener(edtFolderName.getText().toString());
+                    ((OnSaveClickListener) getContext()).onSaveClick(edtFolderName.getText().toString());
                     getDialog().dismiss();
                 }
             }
@@ -60,10 +60,10 @@ public class AddNewFolderDialog extends DialogFragment {
     }
 
 
-    public interface Listener {
+    public interface OnSaveClickListener {
         /**
          * @param name Save folder's name in database
          */
-        void onSaveClickListener(String name);
+        void onSaveClick(String name);
     }
 }

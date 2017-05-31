@@ -3,7 +3,6 @@ package ir.coursio.notes.model.structures;
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 import ir.coursio.notes.model.db.DataContract;
 
@@ -13,23 +12,36 @@ import ir.coursio.notes.model.db.DataContract;
  */
 
 public class NoteStruct implements Parcelable {
+    //Unique identifier of each note
     private String id;
+    //Note's title which is common in both approaches to NoteStruct
     private String title;
+    //Contains users String input as note, if NoteStruct is a text note this field can't be empty
     private String text;
+    //Shows note container folder
     private String folderId;
+    //Array of bytes that contains user paintings.
     private byte[] drawing;
-    private boolean painting; // checks whether a note is painting or text
+    // checks whether a note is painting or text
+    private boolean painting;
 
-    public NoteStruct(Cursor data) {
-        id = data.getString(data.getColumnIndex(DataContract.NoteEntry._ID));
-        title = data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_TITLE));
-        text = data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_TEXT));
-        folderId = data.getString(data.getColumnIndex(DataContract.NoteEntry.COLUMN_FOLDER_ID));
-        drawing = data.getBlob(data.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_DRAW));
+    /**
+     * Initializes a newly created {@code NoteStruct} object so that it represents.
+     *
+     * @param cursor The Cursor to database to fetch data.
+     */
+    public NoteStruct(Cursor cursor) {
+        id = cursor.getString(cursor.getColumnIndex(DataContract.NoteEntry._ID));
+        title = cursor.getString(cursor.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_TITLE));
+        text = cursor.getString(cursor.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_TEXT));
+        folderId = cursor.getString(cursor.getColumnIndex(DataContract.NoteEntry.COLUMN_FOLDER_ID));
+        drawing = cursor.getBlob(cursor.getColumnIndex(DataContract.NoteEntry.COLUMN_NOTE_DRAW));
         painting = text == null;
     }
 
-
+    /**
+     * Generates instances of {@code NoteStruct}  from a Parcel
+     */
     public static final Parcelable.Creator<NoteStruct> CREATOR = new Parcelable.Creator<NoteStruct>() {
         @Override
         public NoteStruct createFromParcel(Parcel source) {
@@ -47,6 +59,12 @@ public class NoteStruct implements Parcelable {
         return 0;
     }
 
+    /**
+     * Flatten {@code NoteStruct}  in to a Parcel.
+     *
+     * @param dest  The Parcel in which the object should be written.
+     * @param flags Additional flags about how the object should be written.
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
@@ -56,12 +74,17 @@ public class NoteStruct implements Parcelable {
         dest.writeByteArray(this.drawing);
     }
 
-    protected NoteStruct(Parcel in) {
-        this.id = in.readString();
-        this.title = in.readString();
-        this.text = in.readString();
-        this.folderId = in.readString();
-        this.drawing = in.createByteArray();
+    /**
+     * Initializes a {@code NoteStruct} object from parcel.
+     *
+     * @param parcel The Parcel that contains our data.
+     */
+    protected NoteStruct(Parcel parcel) {
+        this.id = parcel.readString();
+        this.title = parcel.readString();
+        this.text = parcel.readString();
+        this.folderId = parcel.readString();
+        this.drawing = parcel.createByteArray();
     }
 
     public String getId() {

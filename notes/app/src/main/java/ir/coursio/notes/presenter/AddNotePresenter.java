@@ -11,7 +11,6 @@ import ir.coursio.notes.view.AddNoteView;
  */
 
 public class AddNotePresenter implements AddNoteView.OnSaveListener {
-
     private final AddNoteView view;
     private final AddNoteModel model;
 
@@ -32,7 +31,7 @@ public class AddNotePresenter implements AddNoteView.OnSaveListener {
     }
 
     /**
-     * Save user note using model saveNote method
+     * Save user note using model saveNote method, , Implements {@link AddNoteView.OnSaveListener}.
      *
      * @param title user note title
      * @param text  user note text

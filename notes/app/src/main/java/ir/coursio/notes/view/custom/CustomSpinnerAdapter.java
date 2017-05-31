@@ -17,19 +17,19 @@ import ir.coursio.notes.R;
  */
 
 public class CustomSpinnerAdapter extends BaseAdapter {
+    //Color and drawables for color spinner
     public static String[] colorNames = {"Black", "Red", "Green"};
     public static int[] colorDrawables = {R.drawable.ic_color_black_24dp, R.drawable.ic_color_red_24dp, R.drawable.ic_color_green_24dp};
 
+    //Color and drawables for brush spinner
     public static String[] brushNames = {"Pen", "Brush", "Marker"};
     public static int[] brushDrawables = {R.drawable.ic_pen_24dp, R.drawable.ic_brush_24dp, R.drawable.ic_circle_24dp};
 
-    private Context context;
     private int drawables[];
     private String[] names;
     private LayoutInflater layoutInflater;
 
     public CustomSpinnerAdapter(Context applicationContext, int[] drawables, String[] names) {
-        this.context = applicationContext;
         this.drawables = drawables;
         this.names = names;
         layoutInflater = (LayoutInflater.from(applicationContext));

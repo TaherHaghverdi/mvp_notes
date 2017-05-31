@@ -35,7 +35,7 @@ public class FoldersListFragment extends Fragment implements FoldersComponent.Vi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new FolderAdapter(this, new ArrayList<FolderStruct>(), getContext());
+        adapter = new FolderAdapter(this, new ArrayList<FolderStruct>());
     }
 
     @Nullable

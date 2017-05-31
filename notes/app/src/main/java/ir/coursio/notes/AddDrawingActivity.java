@@ -23,7 +23,9 @@ public class AddDrawingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         model = new AddDrawingModel(this);
         view = new AddDrawingView(this);
+
         setContentView(view);
+
         presenter = new AddDrawingPresenter(view, model);
         presenter.onCreate();
 

@@ -18,7 +18,6 @@ import ir.coursio.notes.view.list.NotesListFragment;
  */
 
 public class NoteActivity extends AppCompatActivity implements NotesListFragment.OnNoteClickedListener {
-
     NoteView view;
     NotePresenter presenter;
     NoteModel model;

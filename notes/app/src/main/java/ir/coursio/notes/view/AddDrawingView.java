@@ -33,9 +33,10 @@ import ir.coursio.notes.view.custom.DrawingView;
  */
 @SuppressLint("ViewConstructor")
 public class AddDrawingView extends FrameLayout implements View.OnClickListener {
-
     private AddDrawingPresenter presenter;
+    //User painting pallet
     private DrawingView painting;
+    //Note title edittext
     private EditText edtTitle;
     private LinearLayout mainLayout;
 
@@ -118,7 +119,7 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inMutable = true;
                 Bitmap bmp = BitmapFactory.decodeByteArray(note.getDrawing(), 0, note.getDrawing().length, options);
-                painting.paintBitmap(bmp);
+                painting.drawBitmap(bmp);
 
                 if (Build.VERSION.SDK_INT < 16) {
                     mainLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);

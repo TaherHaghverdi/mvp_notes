@@ -1,17 +1,14 @@
 package ir.coursio.notes.model;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 
-import java.util.ArrayList;
 
 import ir.coursio.notes.App;
 import ir.coursio.notes.MainActivity;
 import ir.coursio.notes.model.db.DataBackupHandler;
 import ir.coursio.notes.model.db.DataContract;
-import ir.coursio.notes.util.PermissionHandler;
 
 /**
  * Created by Taher on 28/05/2017.
@@ -31,17 +28,32 @@ public class MainModel {
         App.getAppContext().getContentResolver().insert(DataContract.FoldersEntry.CONTENT_URI, values);
     }
 
-    public void getImportPath() {
+    /**
+     * Request an intention to get exported data.
+     * Calls onActivityResult in {@link MainActivity}
+     */
+    public void getImportedPath() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         activity.startActivityForResult(intent, 1);
     }
 
+    /**
+     * Make a call to {@link DataBackupHandler} to import database from external storage.
+     *
+     * @param path The string which contains stored database path.
+     * @return The String message of whether import was successful or failed.
+     */
     public String importDatabase(String path) {
         return DataBackupHandler.importDb(path, activity);
     }
 
+    /**
+     * Requests to {@link DataBackupHandler} to export database in external storage.
+     *
+     * @return The String message of whether import was successful or failed.
+     */
     public String exportDatabase() {
         return DataBackupHandler.exportDB();
     }

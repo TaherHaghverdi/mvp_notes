@@ -30,6 +30,5 @@ public interface NotesComponent {
          * @param notes inject notes into adapter's RecyclerView
          */
         void updateNotes(ArrayList<NoteStruct> notes);
-
     }
 }

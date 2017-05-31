@@ -25,13 +25,17 @@ import ir.coursio.notes.view.list.NotesListFragment;
  */
 @SuppressLint("ViewConstructor")
 public class NoteView extends FrameLayout implements View.OnClickListener {
-
     private NotePresenter presenter;
+    //Floating action bar to add new note
     private FloatingActionsMenu fabAddNote;
+    private Toolbar toolbar;
 
-    private enum ClickedItemType {TEXT, DRAWING}
-
-    Toolbar toolbar;
+    /**
+     * Enum type that indicates whether user wants a new text or drawing.
+     */
+    private enum ClickedItemType {
+        TEXT, DRAWING
+    }
 
     public NoteView(@NonNull final Activity activity) {
         super(activity);

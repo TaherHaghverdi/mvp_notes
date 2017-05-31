@@ -9,7 +9,6 @@ import ir.coursio.notes.view.NoteView;
  */
 
 public class NotePresenter implements NoteView.OnNewNoteRequestListener {
-
     private final NoteView view;
     private final NoteModel model;
 
@@ -26,11 +25,17 @@ public class NotePresenter implements NoteView.OnNewNoteRequestListener {
     public void onDestroy() {
     }
 
+    /**
+     * Request model to provide a new AddNoteActivity, Implements {@link NoteView.OnNewNoteRequestListener}
+     */
     @Override
     public void onNewTextNoteRequest() {
         model.newTextNoteRequest();
     }
 
+    /**
+     * Request model to provide a new AddDrawingActivity, Implements {@link NoteView.OnNewNoteRequestListener}
+     */
     @Override
     public void onNewDrawingNoteRequest() {
         model.newDrawingNoteRequest();

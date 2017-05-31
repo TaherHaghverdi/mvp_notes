@@ -10,7 +10,7 @@ import ir.coursio.notes.model.structures.FolderStruct;
  */
 
 public interface FoldersComponent {
-
+    
     interface Presenter {
         void present();
     }

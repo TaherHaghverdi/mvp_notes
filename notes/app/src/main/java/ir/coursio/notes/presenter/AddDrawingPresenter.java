@@ -29,6 +29,12 @@ public class AddDrawingPresenter implements AddDrawingView.OnSaveListener {
     public void onDestroy() {
     }
 
+    /**
+     * Save a drawing and it's title to database, Implements {@link AddDrawingView.OnSaveListener}.
+     *
+     * @param title       The string contains note's title.
+     * @param drawingView The {@link DrawingView} contains user's paintings input.
+     */
     @Override
     public void onSave(String title, DrawingView drawingView) {
         model.saveDrawing(title, drawingView);

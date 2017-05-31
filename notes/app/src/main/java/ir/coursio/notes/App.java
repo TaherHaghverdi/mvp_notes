@@ -8,6 +8,7 @@ import android.content.Context;
  * Project: notes
  */
 
+// Base class for maintaining global application state
 public class App extends Application {
 
     private static App appInstance;
@@ -16,10 +17,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         appInstance = this;
-    }
-
-    public static App getsInstance() {
-        return appInstance;
     }
 
     public static Context getAppContext() {

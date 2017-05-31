@@ -9,7 +9,8 @@ import android.support.v7.app.AppCompatActivity;
  * Project: RetrofitTutorial
  */
 
-public class BaseActivity extends AppCompatActivity {
+//Each activity that intends to get a permission from user needs to inherit from this activity
+public class PermissionActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

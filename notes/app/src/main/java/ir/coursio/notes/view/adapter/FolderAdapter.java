@@ -1,6 +1,5 @@
 package ir.coursio.notes.view.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +19,12 @@ import ir.coursio.notes.model.structures.FolderStruct;
 public class FolderAdapter extends RecyclerView.Adapter {
     //Custom onFolderClickedListener to handle each item click
     private onFolderClickedListener onFolderClickedListener;
+    //list of user's folders
     private ArrayList<FolderStruct> folders;
-    private Context context;
 
-    public FolderAdapter(onFolderClickedListener onFolderClickedListener, ArrayList<FolderStruct> folders, Context context) {
+    public FolderAdapter(onFolderClickedListener onFolderClickedListener, ArrayList<FolderStruct> folders) {
         this.onFolderClickedListener = onFolderClickedListener;
         this.folders = folders;
-        this.context = context;
     }
 
     @Override
@@ -43,17 +41,20 @@ public class FolderAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /**
+     * ViewHolder class stores data that makes binding view contents  easier
+     */
     private class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtFolderName;
         private View view;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             this.view = view;
             txtFolderName = (TextView) view.findViewById(R.id.txtFolderName);
         }
 
-        public void bindView(final FolderStruct mFolder) {
+        void bindView(final FolderStruct mFolder) {
             txtFolderName.setText(mFolder.getName());
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
