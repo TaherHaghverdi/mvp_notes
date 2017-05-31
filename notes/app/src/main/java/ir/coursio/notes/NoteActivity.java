@@ -1,11 +1,8 @@
 package ir.coursio.notes;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import ir.coursio.notes.model.AddDrawingModel;
-import ir.coursio.notes.model.AddNoteModel;
 import ir.coursio.notes.model.NoteModel;
 import ir.coursio.notes.model.structures.NoteStruct;
 import ir.coursio.notes.presenter.NotePresenter;
