@@ -13,20 +13,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 
 import ir.coursio.notes.R;
 import ir.coursio.notes.model.structures.NoteStruct;
 import ir.coursio.notes.presenter.AddDrawingPresenter;
-import ir.coursio.notes.util.Colors;
-import ir.coursio.notes.view.custom.ColorSpinnerAdapter;
+import ir.coursio.notes.util.Const;
+import ir.coursio.notes.view.custom.CustomSpinnerAdapter;
 import ir.coursio.notes.view.custom.DrawingView;
 
 /**
@@ -75,12 +73,16 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
         });
 
         //Set custom spinner to choose color
-        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
-        ColorSpinnerAdapter colorSpinnerAdapter = new ColorSpinnerAdapter(getContext(),
-                ColorSpinnerAdapter.colorDrawables, ColorSpinnerAdapter.colorNames);
-        spinner.setAdapter(colorSpinnerAdapter);
-        spinner.setOnItemSelectedListener(spinnerListener);
+        Spinner spnColor = (Spinner) view.findViewById(R.id.spnColor);
+        spnColor.setAdapter(new CustomSpinnerAdapter(getContext(),
+                CustomSpinnerAdapter.colorDrawables, CustomSpinnerAdapter.colorNames));
+        spnColor.setOnItemSelectedListener(spnColorListener);
 
+        //Set custom spinner to choose brush
+        Spinner spnBrush = (Spinner) view.findViewById(R.id.spnBrush);
+        spnBrush.setAdapter(new CustomSpinnerAdapter(getContext(),
+                CustomSpinnerAdapter.brushDrawables, CustomSpinnerAdapter.brushNames));
+        spnBrush.setOnItemSelectedListener(spnBrushListener);
     }
 
     public void setPresenter(AddDrawingPresenter presenter) {
@@ -121,7 +123,7 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
         });
     }
 
-    AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
+    AdapterView.OnItemSelectedListener spnColorListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             painting.changeColor(position);
@@ -129,7 +131,28 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-            painting.changeColor(Colors.BLACK);
+            painting.changeColor(Const.BLACK);
+        }
+    };
+    AdapterView.OnItemSelectedListener spnBrushListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            switch (position) {
+                case 0:
+                    painting.changeBrush(Const.PEN);
+                    break;
+                case 1:
+                    painting.changeBrush(Const.BRUSH);
+                    break;
+                case 2:
+                    painting.changeBrush(Const.MARKER);
+                    break;
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+            painting.changeColor(Const.BLACK);
         }
     };
 }

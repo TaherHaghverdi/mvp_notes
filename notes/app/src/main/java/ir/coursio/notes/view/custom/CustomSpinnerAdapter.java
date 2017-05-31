@@ -16,25 +16,28 @@ import ir.coursio.notes.R;
  * Project: notes
  */
 
-public class ColorSpinnerAdapter extends BaseAdapter {
+public class CustomSpinnerAdapter extends BaseAdapter {
     public static String[] colorNames = {"Black", "Red", "Green"};
     public static int[] colorDrawables = {R.drawable.ic_color_black_24dp, R.drawable.ic_color_red_24dp, R.drawable.ic_color_green_24dp};
 
+    public static String[] brushNames = {"Pen", "Brush", "Marker"};
+    public static int[] brushDrawables = {R.drawable.ic_pen_24dp, R.drawable.ic_brush_24dp, R.drawable.ic_circle_24dp};
+
     private Context context;
-    private int colors[];
-    private String[] colorsName;
+    private int drawables[];
+    private String[] names;
     private LayoutInflater layoutInflater;
 
-    public ColorSpinnerAdapter(Context applicationContext, int[] colors, String[] colorsName) {
+    public CustomSpinnerAdapter(Context applicationContext, int[] drawables, String[] names) {
         this.context = applicationContext;
-        this.colors = colors;
-        this.colorsName = colorsName;
+        this.drawables = drawables;
+        this.names = names;
         layoutInflater = (LayoutInflater.from(applicationContext));
     }
 
     @Override
     public int getCount() {
-        return colors.length;
+        return drawables.length;
     }
 
     @Override
@@ -51,10 +54,10 @@ public class ColorSpinnerAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = layoutInflater.inflate(R.layout.custom_color_spinner_item, null);
-        ImageView imgColor = (ImageView) view.findViewById(R.id.imgColor);
-        TextView txtColor = (TextView) view.findViewById(R.id.txtColor);
-        imgColor.setImageResource(colors[i]);
-        txtColor.setText(colorsName[i]);
+        ImageView img = (ImageView) view.findViewById(R.id.img);
+        TextView txt = (TextView) view.findViewById(R.id.txt);
+        img.setImageResource(drawables[i]);
+        txt.setText(names[i]);
         return view;
     }
 }

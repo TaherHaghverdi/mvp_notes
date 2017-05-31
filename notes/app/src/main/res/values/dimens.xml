@@ -45,6 +45,7 @@
     <!-- Custom Spinner -->
     <dimen name="spinner_horizontal_margin">4dp</dimen>
     <dimen name="spinner_vertical_margin">10dp</dimen>
+    <dimen name="spinner_margin_each_other">8dp</dimen>
 
 
 </resources>

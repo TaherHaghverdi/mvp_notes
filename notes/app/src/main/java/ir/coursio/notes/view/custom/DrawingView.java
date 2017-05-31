@@ -17,7 +17,7 @@ import android.view.View;
 import java.io.ByteArrayOutputStream;
 
 import ir.coursio.notes.R;
-import ir.coursio.notes.util.Colors;
+import ir.coursio.notes.util.Const;
 
 /**
  * Created by Taher on 30/05/2017.
@@ -25,6 +25,10 @@ import ir.coursio.notes.util.Colors;
  */
 
 public class DrawingView extends View {
+
+    private static final int PEN_SIZE = 15;
+    private static final int BRUSH_SIZE = 25;
+    private static final int MARKER_SIZE = 40;
 
     private Path mPath;
     private Paint mPaint;
@@ -40,11 +44,11 @@ public class DrawingView extends View {
         mPath = new Path();
         mPaint = new Paint();
         mPaint.setColor(Color.BLACK);
-        mPaint.setAntiAlias(true);
-        mPaint.setStrokeWidth(20);
+        mPaint.setStrokeWidth(PEN_SIZE);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setAntiAlias(true);
         Log.i("tag", "initialized");
 
     }
@@ -89,15 +93,29 @@ public class DrawingView extends View {
     }
 
     public void changeColor(int color) {
-        switch (color){
-            case Colors.BLACK:
+        switch (color) {
+            case Const.BLACK:
                 mPaint.setColor(Color.BLACK);
                 break;
-            case Colors.RED:
+            case Const.RED:
                 mPaint.setColor(Color.RED);
                 break;
-            case Colors.GREEN:
+            case Const.GREEN:
                 mPaint.setColor(Color.GREEN);
+                break;
+        }
+    }
+
+    public void changeBrush(int brush) {
+        switch (brush) {
+            case Const.PEN:
+                mPaint.setStrokeWidth(PEN_SIZE);
+                break;
+            case Const.BRUSH:
+                mPaint.setStrokeWidth(BRUSH_SIZE);
+                break;
+            case Const.MARKER:
+                mPaint.setStrokeWidth(MARKER_SIZE);
                 break;
         }
     }
@@ -117,7 +135,6 @@ public class DrawingView extends View {
     public void clear() {
         mCanvas.drawColor(ContextCompat.getColor(getContext(), R.color.main_bg));
     }
-
 
     public void setPaintXfermode() {
         mPaint.setXfermode(null);

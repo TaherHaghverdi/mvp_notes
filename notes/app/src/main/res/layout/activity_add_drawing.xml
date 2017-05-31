@@ -31,9 +31,16 @@
         android:paddingStart="@dimen/add_note_side_action_margin">
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spnColor"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/add_note_utilities_img_size" />
+
+        <Spinner
+            android:id="@+id/spnBrush"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/add_note_utilities_img_size"
+            android:layout_marginLeft="@dimen/spinner_margin_each_other"
+            android:layout_marginStart="@dimen/spinner_margin_each_other" />
 
 
         <LinearLayout
