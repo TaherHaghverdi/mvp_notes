@@ -10,6 +10,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
+        android:contentDescription="@string/img_id_desc"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_folder_36dp" />
 
@@ -31,6 +32,7 @@
         android:layout_height="@dimen/menu_delete_item_size"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
+        android:contentDescription="@string/img_delete_desc"
         android:scaleType="center"
         android:src="@drawable/ic_delete_24dp" />
 

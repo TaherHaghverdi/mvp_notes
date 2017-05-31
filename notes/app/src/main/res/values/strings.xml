@@ -23,4 +23,8 @@
     <string name="export_db_fail">Export Failed :(</string>
     <string name="import_db_success">Data backed up successfully :)</string>
     <string name="import_db_fail">Import Failed :(</string>
+
+    <string name="img_id_desc">Identifier image to separate different type of menu items by image</string>
+    <string name="img_delete_desc">Remove image to remove data from lists</string>
+
 </resources>
