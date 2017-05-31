@@ -46,7 +46,6 @@ public class NotesListFragment extends Fragment implements NotesComponent.View, 
     @Override
     public void onResume() {
         super.onResume();
-        presenter.present();
     }
 
     /**
