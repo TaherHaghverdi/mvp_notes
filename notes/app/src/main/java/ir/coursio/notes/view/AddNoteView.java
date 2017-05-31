@@ -35,7 +35,12 @@ public class AddNoteView extends FrameLayout implements View.OnClickListener {
     private AddNotePresenter presenter;
     private ViewGroup mainLayout;
 
-    private enum ClickedActionItem {BOLD, ITALIC, CLEAR}
+    /**
+     * Enum type that indicates the status of clicked item.
+     */
+    private enum ClickedActionItem {
+        BOLD, ITALIC, CLEAR
+    }
 
     public AddNoteView(@NonNull final Activity activity) {
         super(activity);
@@ -104,18 +109,24 @@ public class AddNoteView extends FrameLayout implements View.OnClickListener {
         }
     }
 
+    /**
+     * If the viewing note is not a new note we need to retrieve user data.
+     * This method gets data from AddNoteModel and set them on current views.
+     *
+     * @param note The NoteStruct which contains user's saved data.
+     */
     public void editMode(NoteStruct note) {
         edtTitle.setText(note.getTitle());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             edtText.setText(Html.fromHtml(note.getText(), Html.FROM_HTML_MODE_COMPACT));
         } else {
+            //noinspection deprecation
             edtText.setText(Html.fromHtml(note.getText()));
         }
     }
 
     private void showMessage(String message) {
         Snackbar.make(mainLayout, message, Snackbar.LENGTH_LONG).show();
-
     }
 
     private Drawable getIcon(int id) {

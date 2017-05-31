@@ -103,6 +103,12 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
         painting.clear();
     }
 
+    /**
+     * If the viewing note is not a new note we need to retrieve user data.
+     * This method gets data from AddNoteModel and set them on current views.
+     *
+     * @param note The NoteStruct which contains user's saved data.
+     */
     public void editMode(final NoteStruct note) {
         mainLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -123,6 +129,9 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
         });
     }
 
+    /**
+     * An OnItemSelectedListener to change color based on user interests
+     */
     AdapterView.OnItemSelectedListener spnColorListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -134,6 +143,10 @@ public class AddDrawingView extends FrameLayout implements View.OnClickListener 
             painting.changeColor(Const.BLACK);
         }
     };
+
+    /**
+     * An OnItemSelectedListener to change color based on user interests
+     */
     AdapterView.OnItemSelectedListener spnBrushListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
