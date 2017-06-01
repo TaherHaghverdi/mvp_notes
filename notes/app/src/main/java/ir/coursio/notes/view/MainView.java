@@ -3,6 +3,7 @@ package ir.coursio.notes.view;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import ir.coursio.notes.App;
 import ir.coursio.notes.R;
 import ir.coursio.notes.presenter.FoldersListPresenter;
 import ir.coursio.notes.presenter.MainPresenter;
@@ -66,7 +68,7 @@ public class MainView extends FrameLayout implements View.OnClickListener {
      *
      * @param message The String message to show to user.
      */
-    public void showMessage(String message) {
+    private void showMessage(String message) {
         Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
@@ -94,6 +96,13 @@ public class MainView extends FrameLayout implements View.OnClickListener {
         this.presenter = presenter;
     }
 
+    public void exportFinished(String message,Activity activity){
+        Intent i = App.getAppContext().getPackageManager()
+                .getLaunchIntentForPackage(activity.getPackageName());
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        activity.startActivity(i);
+        showMessage(message);
+    }
 
     MenuItem.OnMenuItemClickListener onMenuItemClickListener = new MenuItem.OnMenuItemClickListener() {
         @Override

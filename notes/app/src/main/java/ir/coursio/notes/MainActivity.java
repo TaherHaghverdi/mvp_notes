@@ -70,7 +70,7 @@ public class MainActivity extends PermissionActivity implements FoldersListFragm
         switch (requestCode) {
             case 1:
                 if (resultCode == Activity.RESULT_OK) {
-                    view.showMessage(model.importDatabase(data.getData().getPath()));
+                    view.exportFinished(model.importDatabase(data.getData().getPath()), this);
                 }
                 break;
         }

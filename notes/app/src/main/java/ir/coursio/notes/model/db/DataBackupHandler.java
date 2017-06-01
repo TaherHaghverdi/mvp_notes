@@ -52,7 +52,7 @@ public class DataBackupHandler {
      * @param activity Instance of current activity that will be reset after importing database.
      * @return String success or failed message.
      */
-    public static String importDb(String path, Activity activity) {
+    public static String importDb(String path) {
         try {
             File sd = Environment.getExternalStorageDirectory();
             if (sd.canWrite()) {
@@ -63,7 +63,6 @@ public class DataBackupHandler {
                 dst.transferFrom(src, 0, src.size());
                 src.close();
                 dst.close();
-                activity.recreate();
                 return App.getAppContext().getString(R.string.import_db_success);
             }
         } catch (Exception e) {

@@ -47,7 +47,7 @@ public class MainModel {
      * @return The String message of whether import was successful or failed.
      */
     public String importDatabase(String path) {
-        return DataBackupHandler.importDb(path, activity);
+        return DataBackupHandler.importDb(path);
     }
 
     /**
