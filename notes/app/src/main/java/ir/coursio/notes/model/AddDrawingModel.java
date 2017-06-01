@@ -20,9 +20,9 @@ public class AddDrawingModel {
     private final Activity activity;
 
     // Static strings to identify intent extras
-     static final String NOTE = "note";
-     static final String FOLDER_ID = "folder_id";
-     static final String IS_EDITING = "is_editing";
+    static final String NOTE = "note";
+    static final String FOLDER_ID = "folder_id";
+    static final String IS_EDITING = "is_editing";
 
     public AddDrawingModel(Activity activity) {
         this.activity = activity;
@@ -72,5 +72,4 @@ public class AddDrawingModel {
     public NoteStruct getExtraNote() {
         return activity.getIntent().getParcelableExtra(NOTE);
     }
-
 }

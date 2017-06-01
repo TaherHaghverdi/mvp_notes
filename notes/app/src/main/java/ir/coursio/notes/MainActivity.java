@@ -64,7 +64,6 @@ public class MainActivity extends PermissionActivity implements FoldersListFragm
         presenter.addFolderToDb(name);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
