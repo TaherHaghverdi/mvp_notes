@@ -19,26 +19,18 @@ import ir.coursio.notes.R;
  * Project: notes
  */
 
-public class AddNewFolderDialog extends DialogFragment {
+public class AddNewFolderDialog extends DialogFragment implements View.OnClickListener {
+   private EditText edtFolderName;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_add_new_folder, container, false);
-        final EditText edtFolderName = (EditText) view.findViewById(R.id.edtFolderName);
+        edtFolderName = (EditText) view.findViewById(R.id.edtFolderName);
         TextView save = (TextView) view.findViewById(R.id.txtSave);
         TextView cancel = (TextView) view.findViewById(R.id.txtCancel);
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (edtFolderName.getText().toString().length() > 0) {
-                    ((OnSaveClickListener) getContext()).onSaveClick(edtFolderName.getText().toString());
-                    getDialog().dismiss();
-                }
-            }
-        });
+        save.setOnClickListener(this);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +49,14 @@ public class AddNewFolderDialog extends DialogFragment {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         return dialog;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (edtFolderName.getText().toString().length() > 0) {
+            ((OnSaveClickListener) getContext()).onSaveClick(edtFolderName.getText().toString());
+            getDialog().dismiss();
+        }
     }
 
 
