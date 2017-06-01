@@ -72,9 +72,10 @@
     <EditText
         android:id="@+id/edtText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="@dimen/add_note_side_item_margin"
         android:background="@android:color/transparent"
+        android:gravity="top|left"
         android:hint="@string/hint_add_note_text" />
 
 </LinearLayout>
