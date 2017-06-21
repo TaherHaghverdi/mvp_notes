@@ -23,3 +23,7 @@ Everything is based on [Google Java Style Guide] (https://google.github.io/style
 
 ### XML Values
 All values are stored in their related xml files and nothing is hard coded. All dimenn, colors and strings are changeable through their XML folder and there is no need to find anything in XML layout.
+
+### Tutorial
+If you find project difficult to understand I've provided a step by step tutorial which you can find [Here] (https://goo.gl/sPgfpQ)
+
