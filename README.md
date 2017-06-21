@@ -13,7 +13,7 @@ Model and view work with presenter and don't have any direct interaction with ea
 ## Why so many comments?
 I tend to use comments heavily in my code. Writing comments help me to make a schema of how everything is working and personally find them very useful. 
 ## What is my code style? 
-Everything is based on [Google Java Style Guide] (https://google.github.io/styleguide/javaguide.html).
+Everything is based on [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
 ### XML ID naming
 | Asset Type   | Prefix            |		Example               |
 |--------------| ------------------|-----------------------------|
@@ -25,5 +25,5 @@ Everything is based on [Google Java Style Guide] (https://google.github.io/style
 All values are stored in their related xml files and nothing is hard coded. All dimenn, colors and strings are changeable through their XML folder and there is no need to find anything in XML layout.
 
 ### Tutorial
-If you find project difficult to understand I've provided a step by step tutorial which you can find [Here] (https://goo.gl/sPgfpQ)
+If you find project difficult to understand I've provided a step by step tutorial which you can find [Here](https://goo.gl/sPgfpQ)
 
